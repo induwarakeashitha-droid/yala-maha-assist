@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yala-Maha Assist · Farmer Portal</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Sinhala:wght@400;600;700&family=Noto+Sans+Tamil:wght@400;600;700&display=swap">
+<script src="river-config.js"></script>
+<style>
+:root{--bg:#F8FAFC;--card:#FFFFFF;--ink:#0F172A;--mut:#64748B;--body:#475569;--line:#E2E8F0;--line2:#CBD5E1;--pri:#0F766E;--soft:#F1F5F9;--pill:#CCFBF1;--rel:#F0FDFA;--rel-b:#99F6E4;--day:#ECFDF5;--day-t:#047857;--red:#BE123C;--red-arc:#F43F5E;--red-bg:#FFF1F2;--red-b:#FECDD3;--focus:#14B8A6;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px);background:var(--bg)}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--ink);font-family:Inter,'Noto Sans Sinhala','Noto Sans Tamil',system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh}
+.app{max-width:1200px;margin:0 auto;padding:12px 18px 40px}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:6px 0 14px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:700;color:var(--pri);font-size:15px}
+.logo{width:28px;height:28px;border-radius:9px;background:var(--pri);display:grid;place-items:center}
+.seg{display:flex;align-items:center;gap:6px;color:var(--mut)}
+.seg div{display:flex;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px}
+.seg button{border:0;background:none;color:var(--mut);font:600 12px inherit;font-family:inherit;padding:5px 11px;border-radius:999px;cursor:pointer}
+.seg button.on{background:var(--pri);color:#fff}
+.tabs{display:flex;gap:18px;border-bottom:1px solid var(--line);margin-bottom:18px}
+.tabs button{border:0;background:none;font:600 13px inherit;font-family:inherit;color:var(--mut);padding:8px 0 10px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--pri);border-color:var(--pri)}
+h1{font-size:27px;line-height:1.25;font-weight:800;margin:6px 0 8px;color:var(--ink)}
+.sub{color:var(--mut);font-size:14px;line-height:1.5;margin-bottom:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:16px;margin-bottom:12px}
+.row{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.tank{font-size:23px;font-weight:800;color:var(--ink)}
+.small{font-size:12.5px;color:var(--mut)}
+.badge{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:700;color:var(--red);background:var(--red-bg);border:1px solid var(--red-b);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.ring{display:grid;place-items:center;padding:6px 0}
+.ring svg{width:170px;height:170px}
+.warn{display:flex;gap:10px;align-items:center;justify-content:center;text-align:center;color:var(--red);font-weight:700;font-size:13px;margin-top:8px;line-height:1.4}
+.release{background:var(--rel);border-color:var(--rel-b)}
+.label{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--body);margin-bottom:6px}
+.big{font-size:23px;font-weight:800;color:var(--pri);line-height:1.3}
+.h3{font-size:15px;font-weight:700;display:flex;gap:6px;align-items:center;margin-bottom:10px;color:var(--ink)}
+.days{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:10px}
+.day{background:var(--day);border-radius:10px;padding:9px 6px;text-align:center}
+.day span{display:block;font-size:11.5px;color:var(--mut)}
+.day b{font-size:15px;color:var(--day-t)}
+.tip{font-size:12.5px;color:var(--body);line-height:1.55}
+label{display:block;font-size:13px;font-weight:600;margin:12px 0 6px;color:var(--ink)}
+select,textarea,input.f{width:100%;border:1px solid var(--line2);background:var(--card);color:var(--ink);border-radius:12px;padding:12px;font:15px inherit;font-family:inherit}
+::placeholder{color:#94A3B8}
+textarea{height:90px;resize:none}
+select:focus,textarea:focus,input:focus{outline:2px solid var(--focus);outline-offset:0}
+.btn{width:100%;border:0;background:var(--pri);color:#fff;font:700 15px inherit;font-family:inherit;padding:14px;border-radius:12px;margin-top:14px;display:flex;gap:8px;align-items:center;justify-content:center;cursor:pointer}
+.btn:active{transform:scale(.99)}
+.phone{display:flex;gap:8px}
+.cc{background:var(--soft);border:1px solid var(--line2);border-radius:12px;padding:12px 14px;font-weight:600;color:var(--mut)}
+.pf{position:relative;flex:1}.pf svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--mut)}.pf .f{padding-left:36px}
+.err{outline:2px solid var(--red)!important}
+.otp{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin:16px 0 4px}
+.otp input{width:100%;aspect-ratio:1;text-align:center;font:700 20px inherit;font-family:inherit;border:1px solid var(--line2);border-radius:12px;background:var(--card);color:var(--ink);padding:0}
+.otp input:focus{border-color:var(--focus);outline:2px solid var(--pill)}
+.links{display:flex;justify-content:space-between;margin-top:14px;font-size:12.5px}
+.links button{background:none;border:0;color:var(--pri);font:700 12.5px inherit;font-family:inherit;cursor:pointer;text-align:start}
+.links span{color:var(--mut)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translate(-50%,30px);background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:14px;font-weight:600;opacity:0;transition:.25s;pointer-events:none;max-width:90%}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+svg.i{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+.hdr{display:flex;align-items:center;flex-wrap:wrap;gap:10px;padding:6px 0 10px}
+.hdr .sp{flex:1}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;border:1px solid var(--line2);background:#fff;border-radius:10px;padding:7px 11px;color:var(--ink)}
+.chip.amb{background:#FEF3C7;border-color:#FDE68A;color:#B45309;border-radius:999px;font-size:11px;font-weight:700}
+.hb{border:0;background:var(--pri);color:#fff;font:700 13px inherit;font-family:inherit;border-radius:10px;padding:10px 14px;display:inline-flex;gap:8px;align-items:center;cursor:pointer}
+.hb.o{background:#fff;color:var(--ink);border:1px solid var(--line2)}
+.nav{display:flex;gap:20px;overflow-x:auto;border-bottom:1px solid var(--line);margin-bottom:20px}
+.nav button{border:0;background:none;font:600 13.5px inherit;font-family:inherit;color:var(--mut);padding:9px 0 11px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;display:flex;gap:7px;align-items:center;white-space:nowrap}
+.nav button.on{color:var(--pri);border-color:var(--pri)}
+.page{display:none}.page.on{display:block}
+.pt{font-size:25px;font-weight:800;line-height:1.25}.ps{color:var(--mut);font-size:13px;margin:3px 0 18px}
+.g4{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin-bottom:14px}
+.g4 .card{margin:0}
+.k{font-size:12.5px;color:var(--mut);display:flex;gap:6px;align-items:center}
+.v{font-size:25px;white-space:nowrap;flex-wrap:wrap;font-weight:800;margin:6px 0 4px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.cap{font-size:10.5px;color:var(--mut);text-transform:uppercase;letter-spacing:.02em}
+.bar{height:8px;border-radius:9px;background:var(--soft);width:90px;overflow:hidden}.bar i{display:block;height:100%}
+.pill{display:inline-block;font-size:10px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;padding:3px 9px;border-radius:999px;border:1px solid;white-space:nowrap}
+.ok{background:#ECFDF5;color:#047857;border-color:#A7F3D0}.am{background:#FEF3C7;color:#B45309;border-color:#FDE68A}.bd{background:#FFF1F2;color:#BE123C;border-color:#FECDD3}
+.cols{display:grid;gap:14px;grid-template-columns:minmax(0,1fr)}.cols>*{min-width:0}
+@media(min-width:900px){.d-cols{grid-template-columns:340px 1fr}.s-cols{grid-template-columns:minmax(0,430px) 1fr}}
+.cols>div>.card:last-child{margin-bottom:0}
+.ct{font-size:15.5px;font-weight:700;margin-bottom:12px}.cs{font-size:12px;color:var(--mut);margin:-8px 0 12px}
+.rows div{display:flex;justify-content:space-between;font-size:13px;color:var(--mut);padding:7px 0}.rows b{color:var(--ink)}
+.tankw{display:grid;place-items:center;margin:6px 0 14px}.tankw svg{width:170px}
+.legend{display:flex;gap:14px;font-size:11.5px;color:var(--mut);align-items:center;flex-wrap:wrap}.legend i{display:inline-block;width:8px;height:8px;border-radius:9px;margin-right:5px}
+.chart{width:100%;height:auto;display:block}
+.rain{display:flex;align-items:flex-end;gap:26px;height:130px;padding:6px 8px 0}
+.rain div{flex:1;max-width:60px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;font-size:11px;color:var(--mut)}
+.rain b{font-size:11px;color:var(--ink);margin-bottom:4px}.rain i{width:100%;border-radius:6px 6px 0 0;background:#0EA5E9;display:block;min-height:2px}
+.seg2{display:inline-flex;background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:3px;gap:2px;flex-wrap:wrap}
+.seg2 button{border:0;background:none;font:600 12.5px inherit;font-family:inherit;color:var(--body);padding:7px 14px;border-radius:8px;cursor:pointer}
+.seg2 button.on{background:var(--pri);color:#fff}
+.fl{font-size:12.5px;font-weight:700;margin:16px 0 8px;display:block}
+.rec{background:var(--rel);border:1px solid var(--rel-b);border-radius:12px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:10px}
+.rec b{color:var(--pri);font-size:13px;display:block}.rec span{font-size:11px;color:var(--mut)}
+.tp{display:flex;gap:8px;flex-wrap:wrap}
+.tp button{border:1px solid var(--line2);background:#fff;border-radius:999px;padding:6px 12px;font:600 12px inherit;font-family:inherit;color:var(--body);cursor:pointer;display:inline-flex;gap:6px;align-items:center}
+.tp button.on{border-color:var(--pri);color:var(--pri);background:var(--rel)}
+.tp svg{width:13px;height:13px}
+.sum{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;background:var(--soft);border-radius:12px;padding:12px;margin-top:16px}
+.sum span{font-size:11px;color:var(--mut);display:block}.sum b{font-size:19px}
+.acts{display:flex;gap:10px;margin-top:14px}.acts .btn{margin:0}.acts .btn.o{width:auto;background:#fff;color:var(--ink);border:1px solid var(--line2);padding:14px 16px}
+.prev{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr))}
+.bub{background:var(--soft);border-radius:12px;padding:12px;font-size:12.5px;line-height:1.55;margin:6px 0}
+.tw{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:12.5px;min-width:520px}
+th{background:var(--soft);text-align:left;font-weight:600;color:var(--mut);padding:8px 12px}td{padding:8px 12px;border-top:1px solid var(--soft);white-space:nowrap}
+.acts .btn{white-space:nowrap}#page-sms .pill{text-transform:none;letter-spacing:0;font-size:11px;font-weight:700}.portal{max-width:430px;margin:0 auto}
+.lrow{display:flex;justify-content:flex-end;margin-bottom:10px}
+</style>
+</head>
+<body>
+<div class="app">
+ <div class="hdr">
+  <div class="brand"><div class="logo"><svg class="i" style="color:#fff;width:15px;height:15px" viewBox="0 0 24 24"><path d="M12 3s6 6.500 6 11a6 6 0 0 1-12 0c0-4.500 6-11 6-11z"/></svg></div>Yala-Maha Assist</div>
+  <span class="chip"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.500"/></svg><span id="loc">Palugaswewa Tank</span></span>
+  <span class="chip amb">☀ MAHA KANNAYA 2026</span><span class="sp"></span>
+  <button class="hb" id="qb">Quick Broadcast SMS</button><button class="hb o" id="so">Sign out</button>
+ </div>
+ <div class="nav" id="nav"><button data-p="dash" class="on">Dashboard</button><button data-p="river">River</button><button data-p="sms">SMS Gateway</button><button data-p="portal">Farmer Portal</button></div>
+
+ <section class="page on" id="page-dash">
+  <div class="pt">Tank Dashboard</div><div class="ps">Palugaswewa Tank, sample data · Updated 6:00 AM</div>
+  <div class="g4">
+   <div class="card"><div class="k">Water level</div><div class="v">38%<div class="bar"><i style="width:38%;background:#F59E0B"></i></div></div><div class="cap">1.03M of 2.70M m³</div></div>
+   <div class="card"><div class="k">7-day rain forecast</div><div class="v">18.5 mm<span class="pill ok">Light mid-week</span></div><div class="cap"><i>Source: Open-Meteo</i></div></div>
+   <div class="card"><div class="k">Tank status</div><div class="v">Moderate<span class="pill am">Watch closely</span></div><div class="cap">Next release: Thu 6:00 AM</div></div>
+   <div class="card"><div class="k">Farmer contacts</div><div class="v">412<span class="pill ok">Reachable</span></div><div class="cap">Registered phone numbers</div></div>
+  </div>
+  <div class="cols d-cols">
+   <div class="card"><div class="row"><div class="ct" style="margin:0">Water Management</div><span class="pill am">Moderate risk</span></div>
+    <div class="tankw"><svg viewBox="0 0 160 210"><defs><clipPath id="tc"><rect x="10" y="10" width="140" height="190" rx="24"/></clipPath><linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FACC15"/><stop offset="1" stop-color="#FCD9A0"/></linearGradient></defs><rect x="10" y="10" width="140" height="190" rx="24" fill="#FFFBEB" stroke="#FDE68A" stroke-width="4"/><g clip-path="url(#tc)"><path d="M0 128q20-10 40 0t40 0 40 0 40 0V210H0z" fill="url(#tg)"/><path d="M0 120q20-10 40 0t40 0 40 0 40 0" fill="none" stroke="#F59E0B" stroke-width="1.500"/></g><text x="80" y="62" text-anchor="middle" font-size="36" font-weight="800" fill="#B45309" font-family="Inter,sans-serif">38%</text><text x="80" y="80" text-anchor="middle" font-size="9" fill="#64748B" font-family="Inter,sans-serif">CAPACITY USED</text></svg></div>
+    <div class="rows"><div>Max capacity<b>2.70M m³</b></div><div>Current volume<b>1.03M m³</b></div><div>Water height<b>2.58 m</b></div></div></div>
+   <div>
+    <div class="card"><div class="row"><div class="ct" style="margin:0">Level history, last 30 days</div><div class="legend"><span><i style="background:#0F766E"></i>Water Level</span><span><i style="background:#E11D48"></i>Critical Level (20%)</span></div></div><svg class="chart" id="chart" viewBox="0 0 640 270"></svg></div>
+    <div class="card"><div class="row"><div class="k" style="font-weight:700;letter-spacing:.04em">7-DAY RAINFALL (MM)</div><span class="chip" style="font-size:10px;background:var(--soft);border-color:var(--soft);color:var(--mut)">Last 4 days reported</span></div><div class="rain" id="rain"></div></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="page" id="page-river">
+  <div class="row" style="align-items:flex-start;flex-wrap:wrap;margin-bottom:8px">
+   <div>
+    <div class="pt">River Monitoring &amp; Flood Warning</div>
+    <div class="ps" style="margin-bottom:4px">Yan Oya River Basin · Open-Meteo Flood API &amp; Catchment Hydrology · <span id="rv-updated">Updated just now</span></div>
+   </div>
+   <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+    <span class="chip" id="rv-api-status"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10B981;margin-right:4px"></span>Live API</span>
+    <button class="hb o" id="rv-refresh-btn" style="padding:7px 13px;font-size:12px"><svg class="i" viewBox="0 0 24 24"><path d="M23 4v6h-6M1 20v-6h6M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg> Refresh</button>
+   </div>
+  </div>
+
+  <div class="card" style="padding:10px 14px;margin-bottom:14px">
+   <div class="row" style="flex-wrap:wrap;gap:10px">
+    <div style="display:flex;align-items:center;gap:10px">
+     <span style="font-size:12.5px;font-weight:700;color:var(--ink)">Auto-send SMS:</span>
+     <div class="seg2" id="rv-auto-seg"><button class="on" data-auto="1">ON (Automatic)</button><button data-auto="0">OFF (Officer Approval)</button></div>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+     <span class="small" style="font-weight:600">Simulate Scenario:</span>
+     <div class="seg2" id="rv-scen-seg">
+      <button data-sc="live">Live API</button>
+      <button data-sc="safe">Safe (48%)</button>
+      <button data-sc="watch">Watch (70%)</button>
+      <button data-sc="warning">Warning (95%)</button>
+      <button class="on" data-sc="flood">Flood (107%)</button>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div id="rv-officer-banner" class="card" style="display:none;background:var(--red-bg);border:1.5px solid var(--red-b);padding:14px 16px;margin-bottom:14px">
+   <div class="row" style="align-items:center;flex-wrap:wrap;gap:12px">
+    <div style="display:flex;gap:10px;align-items:center">
+     <span style="color:var(--red)"><svg class="i" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/></svg></span>
+     <div>
+      <b style="color:var(--red);font-size:13.5px" id="rv-banner-title">Flood Broadcast Pending Officer Approval</b>
+      <div style="font-size:12.5px;color:var(--body);margin-top:2px" id="rv-banner-msg">412 farmers in Downstream Kudawewa &amp; Palugaswewa are queued for early warning dispatch.</div>
+     </div>
+    </div>
+    <div style="display:flex;gap:8px">
+     <button class="hb" id="rv-btn-approve" style="background:var(--red);font-size:12.5px;padding:8px 14px">Approve &amp; Send Broadcast</button>
+     <button class="hb o" id="rv-btn-dismiss" style="font-size:12.5px;padding:8px 14px">Cancel Alert</button>
+    </div>
+   </div>
+  </div>
+
+  <div class="g4">
+   <div class="card">
+    <div class="k">Current river level</div>
+    <div class="v"><span id="rv-stat-curr">3.65 m</span><div class="bar"><i id="rv-bar-curr" style="width:81%;background:#F59E0B"></i></div></div>
+    <div class="cap" id="rv-cap-curr">81% of 4.50 m safe capacity</div>
+   </div>
+   <div class="card">
+    <div class="k">Predicted peak level</div>
+    <div class="v"><span id="rv-stat-peak">4.82 m</span><span class="pill bd" id="rv-pill-peak">+0.32 m overflow</span></div>
+    <div class="cap" id="rv-cap-peak">107% of safe capacity</div>
+   </div>
+   <div class="card">
+    <div class="k">Flood risk level</div>
+    <div class="v"><span id="rv-stat-risk" style="color:var(--red)">Flood</span><span class="pill bd" id="rv-pill-risk">Critical</span></div>
+    <div class="cap" id="rv-cap-risk">Threshold: &gt; 100% of capacity</div>
+   </div>
+   <div class="card">
+    <div class="k">Time to peak exceedance</div>
+    <div class="v"><span id="rv-stat-time">Thursday</span><span class="pill am" id="rv-pill-time">~48 hrs</span></div>
+    <div class="cap" id="rv-cap-time">Expected Thursday evening</div>
+   </div>
+  </div>
+
+  <div class="cols d-cols">
+   <div class="card">
+    <div class="row"><div class="ct" style="margin:0">River Gauge &amp; Flow</div><span class="pill bd" id="rv-gauge-badge">Overflow risk</span></div>
+    <div class="tankw" id="rv-gauge-wrap">
+     <svg viewBox="0 0 160 210" id="rv-gauge-svg">
+      <defs>
+       <clipPath id="rc-clip"><rect x="10" y="10" width="140" height="190" rx="24"/></clipPath>
+       <linearGradient id="rg-grad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#F43F5E"/>
+        <stop offset="1" stop-color="#FDA4AF"/>
+       </linearGradient>
+      </defs>
+      <rect x="10" y="10" width="140" height="190" rx="24" fill="#FFF1F2" stroke="#FECDD3" stroke-width="4"/>
+      <g clip-path="url(#rc-clip)">
+       <path d="M0 65q20-10 40 0t40 0 40 0 40 0V210H0z" fill="url(#rg-grad)"/>
+       <path d="M0 58q20-10 40 0t40 0 40 0 40 0" fill="none" stroke="#E11D48" stroke-width="1.500"/>
+       <line x1="10" x2="150" y1="80" y2="80" stroke="#BE123C" stroke-dasharray="4 3" stroke-width="1.5"/>
+       <text x="80" y="76" text-anchor="middle" font-size="8" font-weight="700" fill="#BE123C">SAFE CAPACITY 4.50m</text>
+      </g>
+      <text x="80" y="44" text-anchor="middle" font-size="30" font-weight="800" fill="#BE123C" font-family="Inter,sans-serif" id="rv-gauge-pct">107%</text>
+      <text x="80" y="58" text-anchor="middle" font-size="9" fill="#64748B" font-family="Inter,sans-serif" id="rv-gauge-txt">SAFE CAPACITY EXCEEDED</text>
+     </svg>
+    </div>
+    <div class="rows">
+     <div>Safe bank capacity<b>4.50 m</b></div>
+     <div>Current discharge<b id="rv-row-qcurr">37.0 m³/s</b></div>
+     <div>Peak forecast discharge<b id="rv-row-qpeak">68.5 m³/s</b></div>
+     <div>Catchment 7d rain<b id="rv-row-rain">46.0 mm</b></div>
+    </div>
+   </div>
+   <div>
+    <div class="card">
+     <div class="row">
+      <div class="ct" style="margin:0">River Level History (7d) &amp; Forecast (7d)</div>
+      <div class="legend">
+       <span><i style="background:#0F766E"></i>Observed (Past 7d)</span>
+       <span><i style="background:#2563EB"></i>Forecast (Next 7d)</span>
+       <span><i style="background:#E11D48"></i>Safe Capacity (4.50m)</span>
+      </div>
+     </div>
+     <svg class="chart" id="rv-chart" viewBox="0 0 640 270"></svg>
+    </div>
+    <div class="card">
+     <div class="row">
+      <div>
+       <div class="ct" style="margin:0">Automated SMS Broadcast Dispatch</div>
+       <div class="cs" style="margin:0">Dispatches multi-lingual early warning SMS when risk reaches Warning or Flood</div>
+      </div>
+      <span class="pill ok" id="rv-dispatch-pill">Auto-Dispatch Active</span>
+     </div>
+     <div class="prev" style="margin-top:12px">
+      <div>
+       <div class="small" style="color:var(--ink);font-weight:600">English SMS</div>
+       <div class="bub" id="rv-prev-en" lang="en">Flood warning: Yan Oya River may overflow by Thursday evening. Move livestock and equipment to higher ground. Avoid crossing the river. — Yala-Maha Assist</div>
+       <div class="cap" style="text-transform:none">Downstream · 412 farmers</div>
+      </div>
+      <div>
+       <div class="small" style="color:var(--ink);font-weight:600">සිංහල (Sinhala SMS)</div>
+       <div class="bub" id="rv-prev-si" lang="si">ගංවතුර අනතුරු ඇඟවීම: බ්‍රහස්පතින්දා සවස් වන විට යාන් ඔය පිටාර ගැලීමේ අවදානමක් ඇත. ගවයන් සහ උපකරණ උස් ස්ථානවලට ගෙන යන්න. ගඟ හරහා යාමෙන් වළකින්න. — Yala-Maha Assist</div>
+       <div class="cap" style="text-transform:none">Downstream · 412 farmers</div>
+      </div>
+      <div>
+       <div class="small" style="color:var(--ink);font-weight:600">தமிழ் (Tamil SMS)</div>
+       <div class="bub" id="rv-prev-ta" lang="ta">வெள்ள எச்சரிக்கை: வியாழன் மாலைக்குள் யான் ஓயா நதி நிரம்பி வழியக்கூடும். கால்நடைகள் மற்றும் உபகரணங்களை உயரமான இடங்களுக்கு நகர்த்தவும். நதியைக் கடப்பதைத் தவிர்க்கவும். — Yala-Maha Assist</div>
+       <div class="cap" style="text-transform:none">Downstream · 412 farmers</div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+
+  <div class="card">
+   <div class="row" style="margin-bottom:10px">
+    <div>
+     <div class="ct" style="margin:0">Vulnerable Downstream Villages &amp; Agricultural Risk</div>
+     <div class="cs" style="margin:0">Topographical exposure and farmer protection actions along Yan Oya River</div>
+    </div>
+    <span class="chip" id="rv-villages-summary">2 Villages at Flood Overflow Risk</span>
+   </div>
+   <div class="tw">
+    <table>
+     <thead>
+      <tr>
+       <th>Village / Tract</th>
+       <th>River Distance</th>
+       <th>Topographical Zone</th>
+       <th>Bank Safe Level</th>
+       <th>Projected Peak</th>
+       <th>Risk Status</th>
+       <th>Reachable Farmers</th>
+       <th>Safety Precaution</th>
+      </tr>
+     </thead>
+     <tbody id="rv-villages-tbody"></tbody>
+    </table>
+   </div>
+  </div>
+ </section>
+
+ <section class="page" id="page-sms">
+  <div class="pt">SMS Gateway &amp; Dispatch Log</div><div class="ps">Broadcast alerts and handle inbound farmer queries</div>
+  <div class="g4">
+   <div class="card"><div class="k">Sent today</div><div class="v">1,286</div><div class="cap" style="text-transform:none;font-size:12px">messages across 6 broadcasts</div></div>
+   <div class="card"><div class="k">Delivered</div><div class="v">94.2%</div><div class="bar" style="width:100%"><i style="width:94.2%;background:#10B981"></i></div></div>
+   <div class="card"><div class="k">Pending</div><div class="v" style="color:#B45309">38</div><div class="cap" style="text-transform:none;font-size:12px">awaiting carrier receipt</div></div>
+   <div class="card"><div class="k">Failed</div><div class="v" style="color:#BE123C">4</div><div class="cap" style="text-transform:none;font-size:12px">retry available</div></div>
+  </div>
+  <div class="cols s-cols">
+   <div class="card"><div class="row"><div class="ct" style="margin:0">Compose SMS Broadcast</div><span class="pill am">Draft</span></div>
+    <span class="fl">1 · Target group</span><div class="seg2" id="grp"><button data-g="Upstream">Upstream</button><button data-g="Downstream" class="on">Downstream</button><button data-g="All">All</button></div>
+    <div class="rec"><div><b><span id="rc" style="font-size:13px;color:var(--pri);font-weight:700">412</span> farmers will receive this</b><span>Kudawewa area · registered phone nodes</span></div><span class="pill ok" id="rb">412 recipients</span></div>
+    <span class="fl">2 · Language</span><div class="seg2" id="lg"><button data-l="si">Sinhala</button><button data-l="ta">தமிழ்</button><button data-l="en" class="on">English</button></div>
+    <div class="small" style="margin-top:8px">English: 160 characters per SMS · Sinhala / Tamil (Unicode): 70 per SMS</div>
+    <span class="fl">3 · Quick template</span><div class="tp" id="tp"></div>
+    <span class="fl">4 · Message</span><textarea id="msg" style="height:84px"></textarea>
+    <div class="row" style="margin-top:8px"><span class="small" id="cnt"></span><span class="pill ok" id="seg">1 SMS segment</span></div>
+    <span class="fl">5 · Delivery time</span><div class="seg2" id="dt"><button class="on">Send now</button><button>Schedule</button></div>
+    <div class="sum"><div><span>Recipients</span><b id="s1">412</b></div><div><span>Segments each</span><b id="s2">1</b></div><div><span>Total messages</span><b id="s3">412</b></div></div>
+    <div class="acts"><button class="btn o" id="sd">Save draft</button><button class="btn" id="sb">Send SMS Broadcast</button></div></div>
+   <div>
+    <div class="card"><div class="row"><div class="ct" style="margin:0">Live preview — how farmers see it</div><span class="pill ok">3 languages ready</span></div><div class="prev" style="margin-top:14px" id="pv"></div></div>
+    <div class="card"><div class="ct">Outbound Alert History</div><div class="cs">Delivery status per broadcast</div><div class="tw"><table><thead><tr><th>Sent</th><th>Group</th><th>Message</th><th>Reach</th><th>Status</th></tr></thead><tbody id="hist"></tbody></table></div></div>
+    <div class="card"><div class="ct">Inbound Query Log</div><div class="cs">Farmer texts and automatic replies</div><div class="tw"><table><thead><tr><th>Time</th><th>From</th><th>Message</th><th>Response</th></tr></thead><tbody><tr><td>6:12 AM</td><td>+94 77 ••• 4821</td><td>STATUS KAPAWA</td><td><span class="pill ok">Auto-reply sent</span></td></tr><tr><td>6:08 AM</td><td>+94 71 ••• 9033</td><td>NEXT RELEASE</td><td><span class="pill ok">Auto-reply sent</span></td></tr><tr><td>5:51 AM</td><td>+94 76 ••• 1207</td><td>CANAL BLOCKED</td><td><span class="pill am">Queued for officer</span></td></tr></tbody></table></div></div>
+   </div>
+  </div>
+ </section>
+
+ <section class="page" id="page-portal"><div class="portal">
+  <div class="lrow"><div class="seg"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><div id="langs"><button data-l="en" class="on">EN</button><button data-l="si">සි</button><button data-l="ta">த</button></div></div></div>
+  <div class="tabs" id="tabs"></div><main id="view"></main>
+ </div></section>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+
+const T={
+en:{tabs:["Sign in","Verify","Home"],tank:"Kudawewa Tank",loc:"Downstream · Village view",crit:"Critical",of:"of capacity",low:"Water is low — please conserve",next:"Next Scheduled Water Release",when:"Thursday, 6:00 AM",rain:"3-Day Rain Forecast",d:["Thu","Fri","Sat"],mm:"mm",advice:"Crop advice: delay paddy transplanting until Friday rain. Water vegetables early morning.",rep:"Report Canal Issue",type:"Issue type",opts:["Blockage","Leak","Broken gate","Other"],desc:"Description",ph:"Type what you see...",send:"Submit Report",sent:"Report sent. Thank you!",
+ floodTitle:"Flood Warning · Yan Oya River",floodMsg:"Yan Oya River may overflow by Thursday evening. Move livestock and equipment to higher ground. Avoid crossing the river.",floodBadge:"FLOOD ALERT",floodPeakLabel:"Peak Level",floodTimeLabel:"Expected Time",
+ st:"Sign in or register",ss:"Enter your mobile number to receive a 6-digit code.",mob:"Mobile number",sms:"Send SMS code",vt:"Verify your number",vs:"Sent to +94 ",vb:"Verify code",chg:"Change number",res:"Resend in {n}s",bad:"Enter a valid mobile number"},
+si:{tabs:["පිවිසෙන්න","තහවුරු","මුල් පිටුව"],tank:"කුඩාවැව වැව",loc:"පහළ පෙදෙස · ගම්මාන දසුන",crit:"අවදානම්",of:"ධාරිතාවෙන්",low:"ජලය අඩුයි — කරුණාකර ඉතිරි කර ගන්න",next:"ඊළඟ නියමිත ජල නිකුතුව",when:"බ්‍රහස්පතින්දා, උදෑසන 6:00",rain:"දින 3ක වැසි අනාවැකිය",d:["බ්‍රහස්","සිකුරා","සෙනසු"],mm:"මි.මී.",advice:"වගා උපදෙස්: සිකුරාදා වැස්ස තෙක් වී පැළ සිටුවීම ප්‍රමාද කරන්න. එළවළුවලට උදේ පාන්දර ජලය දෙන්න.",rep:"ඇළ ගැටලුවක් වාර්තා කරන්න",type:"ගැටලුවේ වර්ගය",opts:["අවහිරවීම","කාන්දුවීම","කඩුණු දොරටුව","වෙනත්"],desc:"විස්තරය",ph:"ඔබ දකින දේ ලියන්න...",send:"වාර්තාව යවන්න",sent:"වාර්තාව යවන ලදී. ස්තූතියි!",
+ floodTitle:"ගංවතුර අනතුරු ඇඟවීම · යාන් ඔය",floodMsg:"බ්‍රහස්පතින්දා සවස් වන විට යාන් ඔය පිටාර ගැලීමේ අවදානමක් ඇත. ගවයන් සහ උපකරණ උස් ස්ථානවලට ගෙන යන්න. ගඟ හරහා යාමෙන් වළකින්න.",floodBadge:"අධි අවදානම්",floodPeakLabel:"උපරිම මට්ටම",floodTimeLabel:"අපේක්ෂිත කාලය",
+ st:"පිවිසෙන්න හෝ ලියාපදිංචි වන්න",ss:"ඉලක්කම් 6ක කේතයක් ලබා ගැනීමට ඔබේ ජංගම දුරකථන අංකය ඇතුළත් කරන්න.",mob:"ජංගම අංකය",sms:"SMS කේතය යවන්න",vt:"ඔබේ අංකය තහවුරු කරන්න",vs:"වෙත යවන ලදී +94 ",vb:"කේතය තහවුරු කරන්න",chg:"අංකය වෙනස් කරන්න",res:"තත්පර {n}කින් නැවත යවන්න",bad:"වලංගු දුරකථන අංකයක් ඇතුළත් කරන්න"},
+ta:{tabs:["உள்நுழை","சரிபார்","முகப்பு"],tank:"குடாவெவ குளம்",loc:"கீழ்நிலை · கிராமக் காட்சி",crit:"அவசரம்",of:"கொள்ளளவில்",low:"தண்ணீர் குறைவு — தயவுசெய்து சிக்கனமாகப் பயன்படுத்தவும்",next:"அடுத்த திட்டமிடப்பட்ட நீர் திறப்பு",when:"வியாழன், காலை 6:00",rain:"3 நாள் மழை முன்னறிவிப்பு",d:["வியா","வெள்","சனி"],mm:"மி.மீ.",advice:"பயிர் ஆலோசனை: வெள்ளிக்கிழமை மழை வரை நெல் நடவைத் தாமதப்படுத்தவும். காய்கறிகளுக்கு அதிகாலையில் நீர் பாய்ச்சவும்.",rep:"கால்வாய்ப் பிரச்சினையைப் புகாரளிக்கவும்",type:"பிரச்சினை வகை",opts:["அடைப்பு","கசிவு","உடைந்த மதகு","மற்றவை"],desc:"விவரம்",ph:"நீங்கள் பார்ப்பதை எழுதுங்கள்...",send:"புகாரை அனுப்பு",sent:"புகார் அனுப்பப்பட்டது. நன்றி!",
+ floodTitle:"வெள்ள எச்சரிக்கை · யான் ஓயா நதி",floodMsg:"வியாழன் மாலைக்குள் யான் ஓயா நதி நிரம்பி வழியக்கூடும். கால்நடைகள் மற்றும் உபகரணங்களை உயரமான இடங்களுக்கு நகர்த்தவும். நதியைக் கடப்பதைத் தவிர்க்கவும்.",floodBadge:"வெள்ள அபாயம்",floodPeakLabel:"உச்ச நீர்மட்டம்",floodTimeLabel:"எதிர்பார்க்கப்படும் நேரம்",
+ st:"உள்நுழையவும் அல்லது பதிவு செய்யவும்",ss:"6 இலக்கக் குறியீட்டைப் பெற உங்கள் மொபைல் எண்ணை உள்ளிடவும்.",mob:"மொபைல் எண்",sms:"SMS குறியீட்டை அனுப்பு",vt:"உங்கள் எண்ணைச் சரிபார்க்கவும்",vs:"அனுப்பப்பட்டது +94 ",vb:"குறியீட்டைச் சரிபார்",chg:"எண்ணை மாற்றவும்",res:"{n} வி-இல் மீண்டும் அனுப்பு",bad:"சரியான மொபைல் எண்ணை உள்ளிடவும்"}};
+let lang="en",scr=0,phone="77 123 4567",cd=30,timer;
+let floodAlertActive=true,floodPeakDisplay="4.82 m (107%)",floodTimeDisplay={en:"Thursday evening",si:"බ්‍රහස්පතින්දා සවස",ta:"வியாழன் மாலை"};
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],I=d=>`<svg class="i" viewBox="0 0 24 24">${d}</svg>`;
+const ico={cal:I('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),cloud:I('<path d="M7 17a4 4 0 1 1 .9-7.9A5 5 0 0 1 17.5 10 3.500 3.500 0 0 1 17 17z"/><path d="M8 20l1-2m4 2l1-2"/>'),tool:I('<path d="M14.700 6.300a4 4 0 0 0-5.400 5.400L3 18l3 3 6.300-6.300a4 4 0 0 0 5.400-5.400l-2.500 2.500-2.500-.5-.5-2.500z"/>'),warn:I('<path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18h.01"/>'),drop:I('<path d="M12 3s6 6.500 6 11a6 6 0 0 1-12 0c0-4.500 6-11 6-11z"/>'),send:I('<path d="M22 2L11 13M22 2l-7 20-4-9-9-4z"/>'),lock:I('<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>'),ph:I('<path d="M5 3h4l2 5-2.500 1.500a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2z"/>')};
+function render(){
+  const t=T[lang];$('#page-portal').lang=lang;
+  $('#tabs').innerHTML=t.tabs.map((x,i)=>`<button class="${i==scr?'on':''}" data-s="${i}">${x}</button>`).join('');
+  document.querySelectorAll('#langs button').forEach(b=>b.classList.toggle('on',b.dataset.l==lang));
+  clearInterval(timer);let h='';
+  if(scr==0)h=`<h1>${t.st}</h1><p class="sub">${t.ss}</p><label>${t.mob}</label><div class="phone"><div class="cc">+94</div><div class="pf">${ico.ph}<input class="f" id="ph" type="tel" inputmode="tel" placeholder="77 123 4567" value="${phone==='77 123 4567'?'':phone}"></div></div><button class="btn" id="go1">${ico.send}${t.sms}</button>`;
+  if(scr==1){h=`<h1>${t.vt}</h1><p class="sub">${lang=='en'?t.vs+phone+'.':lang=='si'?'+94 '+phone+' '+t.vs.split(' ')[0]+' ':'+94 '+phone+' '+t.vs.split(' ')[0]}</p><div class="otp" id="otp">${[0,1,2,3,4,5].map(i=>`<input maxlength="1" inputmode="numeric" value="${[5,2,9][i]||''}" autocomplete="${i?'off':'one-time-code'}">`).join('')}</div><button class="btn" id="go2">${ico.lock}${t.vb}</button><div class="links"><button id="chg">${t.chg}</button><span id="res"></span></div>`;}
+  let fHtml='';
+  if(floodAlertActive){
+    const fTime=(typeof floodTimeDisplay==='object'&&floodTimeDisplay[lang])?floodTimeDisplay[lang]:(typeof floodTimeDisplay==='string'?floodTimeDisplay:'Thursday evening');
+    fHtml=`<div class="card" style="background:var(--red-bg);border:1.5px solid var(--red-b);padding:14px 16px;margin:10px 0 14px"><div class="row" style="align-items:flex-start;gap:10px"><div style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--red);margin-top:2px">${ico.warn}</span><div><div style="font-weight:800;font-size:13px;color:var(--red);letter-spacing:.02em;text-transform:uppercase">${t.floodTitle}</div><div style="font-size:12.5px;line-height:1.5;color:var(--ink);margin-top:4px;font-weight:500">${t.floodMsg}</div><div style="font-size:11.5px;color:var(--body);margin-top:6px;display:flex;gap:12px;flex-wrap:wrap"><span><b>${t.floodPeakLabel}:</b> ${floodPeakDisplay}</span><span><b>${t.floodTimeLabel}:</b> ${fTime}</span></div></div></div><span class="badge" style="background:#fff;border-color:var(--red-b);color:var(--red)">${t.floodBadge}</span></div></div>`;
+  }
+  if(scr==2)h=`<div class="row" style="align-items:flex-start;margin-top:4px"><div><div class="tank">${t.tank}</div><div class="small">${t.loc}</div></div><span class="badge">${ico.warn}${t.crit}</span></div>${fHtml}<div class="card" style="margin-top:14px"><div class="ring"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="50" fill="none" stroke="#E2E8F0" stroke-width="12"/><circle cx="60" cy="60" r="50" fill="none" stroke="#F43F5E" stroke-width="12" stroke-linecap="round" stroke-dasharray="56.5 314.2" transform="rotate(-90 60 60)"/><text x="60" y="64" text-anchor="middle" font-size="26" font-weight="800" fill="#BE123C" font-family="Inter,sans-serif">18%</text><text x="60" y="80" text-anchor="middle" font-size="9" fill="#64748B">${t.of}</text></svg></div><div class="warn">${ico.drop}<span>${t.low}</span></div></div>
+  <div class="card release"><div class="label">${ico.cal}${t.next}</div><div class="big">${t.when}</div></div>
+  <div class="card"><div class="h3">${ico.cloud}${t.rain}</div><div class="days">${t.d.map((d,i)=>`<div class="day"><span>${d}</span><b>${[2,6,4][i]} ${t.mm}</b></div>`).join('')}</div><p class="tip">${t.advice}</p></div>
+  <div class="card"><div class="h3">${ico.tool}${t.rep}</div><label style="margin-top:0">${t.type}</label><select>${t.opts.map(o=>`<option>${o}</option>`).join('')}</select><label>${t.desc}</label><textarea placeholder="${t.ph}"></textarea><button class="btn" id="go3">${t.send}</button></div>`;
+  $('#view').innerHTML=h;bind();
+}
+function toast(m){const e=$('#toast');e.textContent=m;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2200)}
+function bind(){
+  const t=T[lang];
+  if($('#go1'))$('#go1').onclick=()=>{const v=$('#ph').value.replace(/\D/g,'');if(v.length<9){$('#ph').classList.add('err');toast(t.bad);return}phone=v.replace(/(\d{2})(\d{3})(\d+)/,'$1 $2 $3');scr=1;render()};
+  if($('#otp')){const ins=[...document.querySelectorAll('#otp input')];(ins.find(x=>!x.value)||ins[5]).focus();
+    ins.forEach((el,i)=>{el.oninput=()=>{el.value=el.value.replace(/\D/g,'');if(el.value&&ins[i+1])ins[i+1].focus()};el.onkeydown=e=>{if(e.key=='Backspace'&&!el.value&&ins[i-1])ins[i-1].focus()}});
+    $('#go2').onclick=()=>{scr=2;render()};$('#chg').onclick=()=>{scr=0;render()};
+    cd=30;const tick=()=>{const r=$('#res');if(!r)return;r.textContent=cd>0?t.res.replace('{n}',cd):'↻';};tick();
+    timer=setInterval(()=>{if(cd>0)cd--;tick()},1000)}
+  if($('#go3'))$('#go3').onclick=()=>toast(t.sent);
+}
+$('#tabs').onclick=e=>{const b=e.target.closest('button');if(b){scr=+b.dataset.s;render()}};
+$('#langs').onclick=e=>{const b=e.target.closest('button');if(b){lang=b.dataset.l;render()}};
+render();
+
+/* ---- app shell, dashboard, sms ---- */
+function show(p){$$('.page').forEach(e=>e.classList.toggle('on',e.id=='page-'+p));$$('#nav button').forEach(b=>b.classList.toggle('on',b.dataset.p==p));$('#loc').textContent=p=='dash'?'Palugaswewa Tank':p=='river'?'Yan Oya River Basin':'Palugaswewa Cascade Chain';scrollTo(0,0);if(p==='river'&&riverData)renderRiverPage()}
+$('#nav').onclick=e=>{const b=e.target.closest('button');if(b)show(b.dataset.p)};
+$('#qb').onclick=()=>{show('sms');$('#msg').focus()};$('#so').onclick=()=>toast('Signed out (demo)');
+(function(){const pts=[25,40,50,42,80,55,48],lb=['Sep 01','Sep 05','Sep 10','Sep 15','Sep 20','Sep 25','Oct 01'],L=44,R=630,Tp=12,H=220,W=R-L;
+ const X=i=>L+W*i/6,Y=v=>Tp+H*(100-v)/100;let g='';
+ [0,20,40,60,80,100].forEach(v=>g+=`<line x1="${L}" x2="${R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#F1F5F9"/><text x="${L-8}" y="${Y(v)+3}" text-anchor="end" font-size="10" fill="#94A3B8">${v}%</text>`);
+ lb.forEach((t,i)=>g+=`<line y1="${Tp}" y2="${Tp+H}" x1="${X(i)}" x2="${X(i)}" stroke="#F1F5F9"/><text x="${X(i)}" y="${Tp+H+18}" text-anchor="middle" font-size="10" fill="#94A3B8">${t}</text>`);
+ let d=`M${X(0)} ${Y(pts[0])}`;for(let i=0;i<6;i++){const p0=pts[i-1]??pts[i],p1=pts[i],p2=pts[i+1],p3=pts[i+2]??p2,x0=X(i-1<0?0:i-1),x3=X(i+2>6?6:i+2);d+=` C${X(i)+(X(i+1)-x0)/6} ${Y(p1)+(-(p2-p0))*H/100/6*-1*-1},${X(i+1)-(x3-X(i))/6} ${Y(p2)+(p3-p1)*H/100/6},${X(i+1)} ${Y(p2)}`}
+ g+=`<path d="${d} L${R} ${Tp+H} L${L} ${Tp+H}Z" fill="#0F766E" opacity=".1"/><path d="${d}" fill="none" stroke="#0F766E" stroke-width="2.500"/><line x1="${L}" x2="${R}" y1="${Y(20)}" y2="${Y(20)}" stroke="#E11D48" stroke-dasharray="5 4" stroke-width="1.500"/><text x="${L+52}" y="${Y(20)-5}" font-size="9" font-weight="700" fill="#E11D48" text-anchor="middle">CRITICAL 20%</text>`;
+ $('#chart').innerHTML=g;
+ $('#rain').innerHTML=[['Thu',1,0],['Fri',0],['Sat',3.5],['Sun',6]].map(([d,v])=>`<div><b>${v.toFixed(1)}</b><i style="height:${v/6*100*.7}%;${d=='Sun'?'background:#0F766E':''}"></i><span style="margin-top:8px;${d=='Sun'?'color:#0F766E;font-weight:700':''}">${d}</span></div>`).join('')})();
+const TP=[['Water release',{en:'Water release scheduled Thursday 6:00 AM. Tank C sluice open for 4 hours. — CascadeNet',ta:'நீர் திறப்பு வியாழன் காலை 6:00. தொட்டி C 4 மணி நேரம் திறந்திருக்கும்.',si:'බ්‍රහස්පතින්දා උදේ 6:00ට ජලය මුදා හැරේ. C වැව් දොරටුව පැය 4ක් විවෘතව පවතී.'}],
+['Low level alert',{en:'Low level alert: Kudawewa below 20%. Please conserve water. — CascadeNet',ta:'குறைந்த நீர் எச்சரிக்கை: குடாவெவ 20%க்குக் கீழே. தயவுசெய்து நீரைச் சேமிக்கவும்.',si:'අඩු ජල මට්ටම: කුඩාවැව 20%ට අඩුයි. කරුණාකර ජලය ඉතිරි කරන්න.'}],
+['Rain warning',{en:'Rain warning: heavy rain expected Friday. Delay paddy transplanting. — CascadeNet',ta:'மழை எச்சரிக்கை: வெள்ளிக்கிழமை கனமழை எதிர்பார்க்கப்படுகிறது. நெல் நடவைத் தாமதப்படுத்தவும்.',si:'වැසි අනතුරු ඇඟවීම: සිකුරාදා අධික වැසි අපේක්ෂිතයි. වී පැළ සිටුවීම ප්‍රමාද කරන්න.'}],
+['Canal maintenance',{en:'Canal maintenance on Sluice A tomorrow. Water may be reduced. — CascadeNet',ta:'நாளை மதகு A கால்வாய் பராமரிப்பு. நீர் குறைவாக இருக்கலாம்.',si:'හෙට A දොරටුවේ ඇළ නඩත්තුව. ජලය අඩු විය හැක.'}]];
+const S={g:'Downstream',l:'en',t:0},N={Upstream:388,Downstream:412,All:1240};
+const tag=I('<path d="M3 12l9-9h8v8l-9 9z"/><circle cx="15.500" cy="8.500" r="1"/>');
+$('#tp').innerHTML=TP.map((t,i)=>`<button data-t="${i}" class="${i?'':'on'}">${tag}${t[0]}</button>`).join('');
+const hist=[['Today 6:05 AM','Downstream','Water release Thu 6:00 AM at Tank C','412','ok','Delivered'],['Today 5:45 AM','All','Low level alert: Kudawewa below 20%','1,240','am','Pending'],['Yesterday','Upstream','Sluice A maintenance window notice','388','ok','Delivered'],['Yesterday','Downstream','Rain forecast update: 18.5 mm expected','412','bd','Failed (4)']];
+const drawHist=()=>$('#hist').innerHTML=hist.map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td><td><span class="pill ${r[4]}" style="text-transform:none;font-size:11px">${r[5]}</span></td></tr>`).join('');
+function upd(){const m=$('#msg').value,lim=S.l=='en'?160:70,sg=Math.max(1,Math.ceil(m.length/lim)),n=N[S.g];
+ $('#cnt').textContent=`${m.length} / ${lim} characters`;$('#seg').textContent=`${sg} SMS segment${sg>1?'s':''}`;
+ $('#s1').textContent=n.toLocaleString();$('#s2').textContent=sg;$('#s3').textContent=(n*sg).toLocaleString();$('#rc').textContent=n.toLocaleString();$('#rb').textContent=n.toLocaleString()+' recipients'}
+function setMsg(){$('#msg').value=TP[S.t][1][S.l];$$('#tp button').forEach((b,i)=>b.classList.toggle('on',i==S.t));
+ $('#pv').innerHTML=[['English','en'],['தமிழ்','ta'],['Sinhala','si']].map(([n,k])=>`<div><div class="small" style="color:var(--ink);font-weight:600">${n}</div><div class="bub" lang="${k}">${TP[S.t][1][k].replace(' — CascadeNet','')}</div><div class="cap" style="text-transform:none">Yala-Maha Assist · now</div></div>`).join('');upd()}
+$('#grp').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.g=b.dataset.g;$$('#grp button').forEach(x=>x.classList.toggle('on',x==b));upd()};
+$('#lg').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.l=b.dataset.l;$$('#lg button').forEach(x=>x.classList.toggle('on',x==b));setMsg()};
+$('#dt').onclick=e=>{const b=e.target.closest('button');if(b)$$('#dt button').forEach(x=>x.classList.toggle('on',x==b))};
+$('#tp').onclick=e=>{const b=e.target.closest('button');if(!b)return;S.t=+b.dataset.t;setMsg()};
+$('#msg').oninput=upd;$('#sd').onclick=()=>toast('Draft saved');
+$('#sb').onclick=()=>{const m=$('#msg').value.trim();if(!m){toast('Write a message first');return}hist.unshift(['Just now',S.g,m.slice(0,38)+(m.length>38?'…':''),String(N[S.g]),'am','Pending']);drawHist();toast('Broadcast queued for '+N[S.g].toLocaleString()+' farmers')};
+drawHist();setMsg();
+
+/* ---- River Monitoring & Flood Warning System ---- */
+let riverAutoSend=(typeof RIVER_CONFIG!=='undefined'&&RIVER_CONFIG.alerts)?RIVER_CONFIG.alerts.autoSendEnabledDefault:true;
+let currentScenario='flood';
+let lastDispatchedRisk=null;
+let pendingOfficerAlert=null;
+let riverData=null;
+
+function initRiverPage(){
+  applyRiverScenario('flood',false);
+  if($('#rv-auto-seg')){
+    $('#rv-auto-seg').onclick=e=>{
+      const b=e.target.closest('button');if(!b)return;
+      riverAutoSend=b.dataset.auto==='1';
+      $$('#rv-auto-seg button').forEach(x=>x.classList.toggle('on',x==b));
+      const pill=$('#rv-dispatch-pill');
+      if(pill){
+        pill.textContent=riverAutoSend?'Auto-Dispatch Active':'Manual Approval Mode';
+        pill.className=riverAutoSend?'pill ok':'pill am';
+      }
+      toast(`Auto-send SMS: ${riverAutoSend?'ENABLED':'DISABLED (Officer Approval Mode)'}`);
+      if(riverAutoSend&&pendingOfficerAlert){
+        dispatchSMSAlert(pendingOfficerAlert.risk,pendingOfficerAlert.peakLevel,pendingOfficerAlert.exceedTime);
+        lastDispatchedRisk=pendingOfficerAlert.risk;
+        hideOfficerBanner();
+      }
+    };
+  }
+  if($('#rv-scen-seg')){
+    $('#rv-scen-seg').onclick=e=>{
+      const b=e.target.closest('button');if(!b)return;
+      const sc=b.dataset.sc;
+      $$('#rv-scen-seg button').forEach(x=>x.classList.toggle('on',x==b));
+      currentScenario=sc;
+      if(sc==='live'){
+        fetchRiverData();
+      }else{
+        applyRiverScenario(sc,true);
+      }
+    };
+  }
+  if($('#rv-refresh-btn')){
+    $('#rv-refresh-btn').onclick=()=>{
+      if(currentScenario==='live'){
+        fetchRiverData();
+      }else{
+        applyRiverScenario(currentScenario,true,'Data refreshed');
+      }
+    };
+  }
+  if($('#rv-btn-approve')){
+    $('#rv-btn-approve').onclick=()=>{
+      if(pendingOfficerAlert){
+        dispatchSMSAlert(pendingOfficerAlert.risk,pendingOfficerAlert.peakLevel,pendingOfficerAlert.exceedTime);
+        lastDispatchedRisk=pendingOfficerAlert.risk;
+        hideOfficerBanner();
+      }
+    };
+  }
+  if($('#rv-btn-dismiss')){
+    $('#rv-btn-dismiss').onclick=()=>{
+      hideOfficerBanner();
+      toast('Alert broadcast cancelled by officer');
+    };
+  }
+  const intervalMins=(typeof RIVER_CONFIG!=='undefined'&&RIVER_CONFIG.api&&RIVER_CONFIG.api.refreshIntervalMinutes)?RIVER_CONFIG.api.refreshIntervalMinutes:30;
+  setInterval(()=>{if(currentScenario==='live')fetchRiverData();},intervalMins*60*1000);
+}
+
+async function fetchRiverData(){
+  const cfg=(typeof RIVER_CONFIG!=='undefined')?RIVER_CONFIG:null;if(!cfg)return;
+  const statusChip=$('#rv-api-status');
+  if(statusChip)statusChip.innerHTML=`<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#F59E0B;margin-right:4px"></span>Connecting...`;
+  if(cfg.api.requireApiKeyForLive&&!cfg.api.apiKey){
+    applyRiverScenario('flood',true,'Sample data (API key missing)');
+    if(statusChip)statusChip.innerHTML=`<span class="pill am" style="font-size:10px">Sample data (No API key)</span>`;
+    return;
+  }
+  const floodUrl=`${cfg.api.floodApiUrl}?latitude=${cfg.api.latitude}&longitude=${cfg.api.longitude}&daily=river_discharge,river_discharge_mean&forecast_days=${cfg.api.forecastDays}&past_days=${cfg.api.pastDays}`;
+  try{
+    const res=await fetch(floodUrl);
+    if(!res.ok)throw new Error('Flood API HTTP '+res.status);
+    const json=await res.json();
+    processApiRiverData(json);
+  }catch(err){
+    console.warn('Real-time API unavailable, falling back to cached sample data:',err);
+    if(statusChip)statusChip.innerHTML=`<span class="pill am" style="font-size:10px">Data delayed (cached)</span>`;
+    $('#rv-updated').textContent='Cached · Last updated 6:00 AM';
+    applyRiverScenario('flood',false,'Data delayed (cached)');
+    toast('Flood API offline. Displaying cached hydrological data.');
+  }
+}
+
+function processApiRiverData(json){
+  const cfg=RIVER_CONFIG;
+  const times=json.daily&&json.daily.time?json.daily.time:[];
+  const discharges=json.daily&&json.daily.river_discharge?json.daily.river_discharge:[];
+  if(times.length<14){applyRiverScenario('flood',true,'Incomplete API data; showing calibrated model');return;}
+  const dashboardRain=[4.2,8.5,24.0,12.0,3.5,0.5,0.0];
+  const safeCap=cfg.river.safeCapacityMeters;
+  const baseRatingLevel=1.80;
+  const history=[],forecast=[];
+  let peakLevel=0,peakIndex=7,peakDateLabel="Thursday evening";
+  for(let i=0;i<7;i++){
+    const dStr=times[i],dt=new Date(dStr);
+    const label=dt.toLocaleDateString('en-US',{month:'short',day:'2-digit'});
+    const q=discharges[i]!==null?discharges[i]:14.5;
+    const level=Math.max(1.2,+(baseRatingLevel+Math.min(2.5,q*1.5)).toFixed(2));
+    history.push({label,levelM:level,discharge:+q.toFixed(1)});
+  }
+  for(let i=7;i<14;i++){
+    const fIdx=i-7,dStr=times[i],dt=new Date(dStr);
+    const dayName=dt.toLocaleDateString('en-US',{weekday:'short'});
+    const label=fIdx===0?`${dt.toLocaleDateString('en-US',{month:'short',day:'2-digit'})} (Today)`:`${dt.toLocaleDateString('en-US',{month:'short',day:'2-digit'})} (${dayName})`;
+    const q=discharges[i]!==null?discharges[i]:18.0;
+    const rain=dashboardRain[fIdx]||0;
+    const level=Math.max(1.5,+(baseRatingLevel+(q*1.6)+(rain*0.06)).toFixed(2));
+    forecast.push({label,levelM:level,discharge:+q.toFixed(1),rainMm:rain});
+    if(level>peakLevel){peakLevel=level;peakIndex=fIdx;peakDateLabel=`${dayName} evening`;}
+  }
+  const currentLevel=history[history.length-1].levelM;
+  const currentDischarge=history[history.length-1].discharge;
+  const peakDischarge=forecast[peakIndex].discharge;
+  riverData={currentLevelM:currentLevel,currentDischargeM3s:currentDischarge,peakLevelM:peakLevel,peakDischargeM3s:peakDischarge,peakDate:peakDateLabel,timeToPeakHours:(peakIndex+1)*24-12,exceedsCapacity:peakLevel>=safeCap,history,forecast};
+  const statusChip=$('#rv-api-status');
+  if(statusChip)statusChip.innerHTML=`<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10B981;margin-right:4px"></span>Live API`;
+  $('#rv-updated').textContent=`Updated ${new Date().toLocaleTimeString([],{hour:'2-digit',minute:'2-digit'})}`;
+  renderRiverPage();
+}
+
+function applyRiverScenario(scenKey,showToastNotice,statusLabel){
+  const cfg=RIVER_CONFIG;
+  const scen=(cfg.sampleScenarios&&cfg.sampleScenarios[scenKey])?cfg.sampleScenarios[scenKey]:cfg.sampleScenarios.flood;
+  riverData=JSON.parse(JSON.stringify(scen));
+  const statusChip=$('#rv-api-status');
+  if(statusChip){
+    if(scenKey==='live'){
+      statusChip.innerHTML=`<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10B981;margin-right:4px"></span>Live API`;
+    }else{
+      statusChip.innerHTML=`<span class="pill ok" style="font-size:10px">Simulation: ${scen.name.split(' ')[0]}</span>`;
+    }
+  }
+  $('#rv-updated').textContent=statusLabel||`Scenario: ${scen.name}`;
+  renderRiverPage();
+  if(showToastNotice)toast(`Simulating: ${scen.name}`);
+}
+
+function renderRiverPage(){
+  if(!riverData)return;
+  const cfg=RIVER_CONFIG;
+  const safeCap=cfg.river.safeCapacityMeters;
+  const curr=riverData.currentLevelM;
+  const peak=riverData.peakLevelM;
+  const peakDate=riverData.peakDate||"Thursday evening";
+  const ratio=(peak/safeCap)*100;
+  let risk='SAFE',riskLabel='Safe',riskPill='ok',riskSub='Normal water levels';
+  if(ratio>=cfg.thresholds.warningMax){
+    risk='FLOOD';riskLabel='Flood Overflow';riskPill='bd';riskSub='Threshold: > 100% capacity';
+  }else if(ratio>=cfg.thresholds.watchMax){
+    risk='WARNING';riskLabel='Warning';riskPill='bd';riskSub='Threshold: 80% - 100% capacity';
+  }else if(ratio>=cfg.thresholds.safeMax){
+    risk='WATCH';riskLabel='Watch';riskPill='am';riskSub='Threshold: 60% - 80% capacity';
+  }
+  const currPct=Math.round((curr/safeCap)*100);
+  const peakPct=Math.round((peak/safeCap)*100);
+
+  $('#rv-stat-curr').textContent=`${curr.toFixed(2)} m`;
+  const currBar=$('#rv-bar-curr');
+  if(currBar){
+    currBar.style.width=`${Math.min(100,currPct)}%`;
+    currBar.style.background=currPct>=100?'#BE123C':currPct>=80?'#BE123C':currPct>=60?'#F59E0B':'#10B981';
+  }
+  $('#rv-cap-curr').textContent=`${currPct}% of ${safeCap.toFixed(2)} m safe capacity`;
+
+  $('#rv-stat-peak').textContent=`${peak.toFixed(2)} m`;
+  const peakPill=$('#rv-pill-peak');
+  if(peak>=safeCap){
+    const diff=(peak-safeCap).toFixed(2);
+    peakPill.className='pill bd';
+    peakPill.textContent=`+${diff} m overflow`;
+  }else{
+    const margin=(safeCap-peak).toFixed(2);
+    peakPill.className=peakPct>=80?'pill am':'pill ok';
+    peakPill.textContent=`Margin: ${margin} m`;
+  }
+  $('#rv-cap-peak').textContent=`${peakPct}% of bank capacity (${peakDate.split(' ')[0]})`;
+
+  const riskTitleEl=$('#rv-stat-risk');
+  riskTitleEl.textContent=riskLabel;
+  riskTitleEl.style.color=(risk==='FLOOD'||risk==='WARNING')?'var(--red)':(risk==='WATCH'?'#B45309':'#047857');
+  const riskPillEl=$('#rv-pill-risk');
+  riskPillEl.className=`pill ${riskPill}`;
+  riskPillEl.textContent=(risk==='FLOOD')?'Critical':(risk==='WARNING')?'High Alert':(risk==='WATCH'?'Advisory':'Safe');
+  $('#rv-cap-risk').textContent=riskSub;
+
+  $('#rv-stat-time').textContent=peakDate.split(' ')[0]||"Thursday";
+  const timePill=$('#rv-pill-time');
+  if(risk==='FLOOD'||risk==='WARNING'){
+    timePill.className='pill bd';
+    timePill.textContent=`~${riverData.timeToPeakHours||48} hrs`;
+  }else if(risk==='WATCH'){
+    timePill.className='pill am';
+    timePill.textContent=`~${riverData.timeToPeakHours||60} hrs`;
+  }else{
+    timePill.className='pill ok';
+    timePill.textContent='No threat';
+  }
+  $('#rv-cap-time').textContent=`Expected ${peakDate}`;
+
+  updateRiverGauge(curr,peak,safeCap);
+  $('#rv-row-qcurr').textContent=`${riverData.currentDischargeM3s.toFixed(1)} m³/s`;
+  $('#rv-row-qpeak').textContent=`${riverData.peakDischargeM3s.toFixed(1)} m³/s`;
+  const totalRain=riverData.forecast.reduce((acc,f)=>acc+(f.rainMm||0),0);
+  $('#rv-row-rain').textContent=`${totalRain.toFixed(1)} mm`;
+
+  drawRiverChart(riverData.history,riverData.forecast,safeCap,peak);
+  renderRiverVillages(peak,risk);
+  updateRiverSmsPreviews(peakDate);
+  evaluateAndTriggerAlert(risk,peak,peakDate);
+}
+
+function updateRiverGauge(currLevel,peakLevel,safeCap){
+  const currRatio=Math.round((currLevel/safeCap)*100);
+  const peakRatio=Math.round((peakLevel/safeCap)*100);
+  let strokeColor='#10B981',stop0='#34D399',stop1='#A7F3D0',fillBg='#ECFDF5',textCol='#047857';
+  let badgeTxt='Safe level',badgeCls='ok';
+  if(currRatio>=100||peakRatio>=100){
+    strokeColor='#E11D48';stop0='#F43F5E';stop1='#FDA4AF';fillBg='#FFF1F2';textCol='#BE123C';
+    badgeTxt='Overflow risk';badgeCls='bd';
+  }else if(currRatio>=80||peakRatio>=80){
+    strokeColor='#E11D48';stop0='#FB7185';stop1='#FECDD3';fillBg='#FFF1F2';textCol='#BE123C';
+    badgeTxt='Warning';badgeCls='bd';
+  }else if(currRatio>=60||peakRatio>=60){
+    strokeColor='#F59E0B';stop0='#FBBF24';stop1='#FDE68A';fillBg='#FFFBEB';textCol='#B45309';
+    badgeTxt='Watch closely';badgeCls='am';
+  }
+  const badge=$('#rv-gauge-badge');
+  if(badge){badge.className=`pill ${badgeCls}`;badge.textContent=badgeTxt;}
+  const clampedRatio=Math.min(130,Math.max(10,currRatio));
+  const waterY=Math.round(200-(clampedRatio/100)*130);
+  const capY=Math.round(200-130);
+  $('#rv-gauge-wrap').innerHTML=`<svg viewBox="0 0 160 210"><defs><clipPath id="rc-clip"><rect x="10" y="10" width="140" height="190" rx="24"/></clipPath><linearGradient id="rg-grad" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${stop0}"/><stop offset="1" stop-color="${stop1}"/></linearGradient></defs><rect x="10" y="10" width="140" height="190" rx="24" fill="${fillBg}" stroke="${stop1}" stroke-width="4"/><g clip-path="url(#rc-clip)"><path d="M0 ${waterY+8}q20-10 40 0t40 0 40 0 40 0V210H0z" fill="url(#rg-grad)"/><path d="M0 ${waterY}q20-10 40 0t40 0 40 0 40 0" fill="none" stroke="${strokeColor}" stroke-width="1.500"/><line x1="10" x2="150" y1="${capY}" y2="${capY}" stroke="#BE123C" stroke-dasharray="4 3" stroke-width="1.5"/><text x="80" y="${capY-4}" text-anchor="middle" font-size="8" font-weight="700" fill="#BE123C">SAFE CAPACITY 4.50m</text></g><text x="80" y="44" text-anchor="middle" font-size="30" font-weight="800" fill="${textCol}" font-family="Inter,sans-serif">${currRatio}%</text><text x="80" y="58" text-anchor="middle" font-size="9" fill="#64748B" font-family="Inter,sans-serif">${currRatio>=100?'CAPACITY EXCEEDED':'RIVER CAPACITY USED'}</text></svg>`;
+}
+
+function drawRiverChart(history,forecast,safeCap,peakLevel){
+  const chartEl=$('#rv-chart');if(!chartEl)return;
+  const pts=[...history.map(h=>h.levelM),...forecast.map(f=>f.levelM)];
+  const labels=[...history.map(h=>h.label),...forecast.map(f=>f.label)];
+  const L=44,R=625,Tp=18,H=205,maxGauge=6.0;
+  const X=i=>L+(R-L)*i/13;
+  const Y=v=>Tp+H*(maxGauge-v)/maxGauge;
+  let g='';
+  [0,1.5,3.0,4.5,6.0].forEach(v=>{
+    g+=`<line x1="${L}" x2="${R}" y1="${Y(v)}" y2="${Y(v)}" stroke="#F1F5F9"/><text x="${L-8}" y="${Y(v)+3.5}" text-anchor="end" font-size="10" fill="#94A3B8">${v.toFixed(1)}m</text>`;
+  });
+  labels.forEach((lb,i)=>{
+    const showLabel=(i%2===0||i===6||i===13);
+    g+=`<line y1="${Tp}" y2="${Tp+H}" x1="${X(i)}" x2="${X(i)}" stroke="#F8FAFC"/>`;
+    if(showLabel){
+      const shortLb=lb.split(' ')[0];
+      g+=`<text x="${X(i)}" y="${Tp+H+18}" text-anchor="middle" font-size="9.5" fill="#94A3B8">${shortLb}</text>`;
+    }
+  });
+  const sepX=(X(6)+X(7))/2;
+  g+=`<line x1="${sepX}" x2="${sepX}" y1="${Tp}" y2="${Tp+H}" stroke="#CBD5E1" stroke-dasharray="3 3" stroke-width="1.2"/>`;
+  g+=`<text x="${sepX-6}" y="${Tp+12}" font-size="8.5" font-weight="700" fill="#64748B" text-anchor="end">PAST 7D</text>`;
+  g+=`<text x="${sepX+6}" y="${Tp+12}" font-size="8.5" font-weight="700" fill="#0F766E" text-anchor="start">FORECAST 7D</text>`;
+
+  let dPast=`M${X(0)} ${Y(pts[0])}`;
+  for(let i=0;i<6;i++){
+    const x0=X(i),y0=Y(pts[i]),x1=X(i+1),y1=Y(pts[i+1]);
+    const mx=(x0+x1)/2;
+    dPast+=` C${mx} ${y0}, ${mx} ${y1}, ${x1} ${y1}`;
+  }
+  g+=`<path d="${dPast} L${X(6)} ${Tp+H} L${X(0)} ${Tp+H}Z" fill="#0F766E" opacity=".10"/>`;
+  g+=`<path d="${dPast}" fill="none" stroke="#0F766E" stroke-width="2.5"/>`;
+
+  let dFore=`M${X(6)} ${Y(pts[6])}`;
+  for(let i=6;i<13;i++){
+    const x0=X(i),y0=Y(pts[i]),x1=X(i+1),y1=Y(pts[i+1]);
+    const mx=(x0+x1)/2;
+    dFore+=` C${mx} ${y0}, ${mx} ${y1}, ${x1} ${y1}`;
+  }
+  const foreColor=peakLevel>=safeCap?'#BE123C':'#2563EB';
+  g+=`<path d="${dFore} L${X(13)} ${Tp+H} L${X(6)} ${Tp+H}Z" fill="${foreColor}" opacity=".07"/>`;
+  g+=`<path d="${dFore}" fill="none" stroke="${foreColor}" stroke-width="2.5" stroke-dasharray="6 3"/>`;
+
+  pts.forEach((v,i)=>{
+    const isPeak=(v===peakLevel&&i>=6);
+    const dotColor=isPeak?'#BE123C':(i<=6?'#0F766E':foreColor);
+    if(isPeak){
+      g+=`<circle cx="${X(i)}" cy="${Y(v)}" r="7" fill="#FFF1F2" stroke="#BE123C" stroke-width="2"/>`;
+      g+=`<circle cx="${X(i)}" cy="${Y(v)}" r="3.5" fill="#BE123C"/>`;
+      g+=`<text x="${X(i)}" y="${Y(v)-11}" font-size="9" font-weight="800" fill="#BE123C" text-anchor="middle">PEAK ${v.toFixed(2)}m</text>`;
+    }else{
+      g+=`<circle cx="${X(i)}" cy="${Y(v)}" r="2.8" fill="${dotColor}"/>`;
+    }
+  });
+
+  const capY=Y(safeCap);
+  g+=`<line x1="${L}" x2="${R}" y1="${capY}" y2="${capY}" stroke="#E11D48" stroke-dasharray="5 4" stroke-width="1.5"/>`;
+  g+=`<text x="${L+86}" y="${capY-6}" font-size="9" font-weight="700" fill="#E11D48" text-anchor="middle">SAFE CAPACITY LIMIT (4.50 m)</text>`;
+
+  chartEl.innerHTML=g;
+}
+
+function renderRiverVillages(peakLevel,risk){
+  const tbody=$('#rv-villages-tbody');if(!tbody||!RIVER_CONFIG.villages)return;
+  let highRiskCount=0;
+  tbody.innerHTML=RIVER_CONFIG.villages.map(v=>{
+    const vPeak=peakLevel*v.riskMultiplier;
+    const vRatio=(vPeak/v.safeThresholdM)*100;
+    let vRisk='Safe',pillClass='ok';
+    if(vRatio>=100){vRisk='Flood Overflow';pillClass='bd';highRiskCount++;}
+    else if(vRatio>=80){vRisk='Warning';pillClass='bd';highRiskCount++;}
+    else if(vRatio>=60){vRisk='Watch';pillClass='am';}
+    return `<tr><td><b>${v.name}</b></td><td>${v.distanceKm}</td><td>${v.elevation}</td><td>${v.safeThresholdM.toFixed(2)} m</td><td><b>${vPeak.toFixed(2)} m</b> <span class="small">(${Math.round(vRatio)}%)</span></td><td><span class="pill ${pillClass}">${vRisk}</span></td><td>${v.farmers}</td><td style="color:var(--body);font-size:12px">${v.actionEn}</td></tr>`;
+  }).join('');
+  const summaryChip=$('#rv-villages-summary');
+  if(summaryChip){
+    summaryChip.textContent=`${highRiskCount} Village${highRiskCount===1?'':'s'} at Flood Overflow Risk`;
+    summaryChip.className=highRiskCount>0?'chip amb':'chip';
+  }
+}
+
+function updateRiverSmsPreviews(exceedTime){
+  const riverName=(RIVER_CONFIG&&RIVER_CONFIG.river)?RIVER_CONFIG.river.name:"Yan Oya";
+  const enMsg=`Flood warning: ${riverName} River may overflow by ${exceedTime}. Move livestock and equipment to higher ground. Avoid crossing the river. — Yala-Maha Assist`;
+  const siTime=exceedTime.includes('Thursday')?'බ්‍රහස්පතින්දා සවස':exceedTime;
+  const taTime=exceedTime.includes('Thursday')?'வியாழன் மாலை':exceedTime;
+  const siMsg=`ගංවතුර අනතුරු ඇඟවීම: ${siTime} වන විට යාන් ඔය පිටාර ගැලීමේ අවදානමක් ඇත. ගවයන් සහ උපකරණ උස් ස්ථානවලට ගෙන යන්න. ගඟ හරහා යාමෙන් වළකින්න. — Yala-Maha Assist`;
+  const taMsg=`வெள்ள எச்சரிக்கை: ${taTime}க்குள் யான் ஓயா நதி நிரம்பி வழியக்கூடும். கால்நடைகள் மற்றும் உபகரணங்களை உயரமான இடங்களுக்கு நகர்த்தவும். நதியைக் கடப்பதைத் தவிர்க்கவும். — Yala-Maha Assist`;
+  if($('#rv-prev-en'))$('#rv-prev-en').textContent=enMsg;
+  if($('#rv-prev-si'))$('#rv-prev-si').textContent=siMsg;
+  if($('#rv-prev-ta'))$('#rv-prev-ta').textContent=taMsg;
+}
+
+function evaluateAndTriggerAlert(risk,peakLevel,exceedTime){
+  const isAlertRisk=(risk==='WARNING'||risk==='FLOOD');
+  if(isAlertRisk){
+    if(lastDispatchedRisk!==risk){
+      if(riverAutoSend){
+        dispatchSMSAlert(risk,peakLevel,exceedTime);
+        lastDispatchedRisk=risk;
+      }else{
+        pendingOfficerAlert={risk,peakLevel,exceedTime};
+        showOfficerBanner(risk,peakLevel,exceedTime);
+      }
+    }
+  }else{
+    if(floodAlertActive&&(lastDispatchedRisk==='WARNING'||lastDispatchedRisk==='FLOOD')){
+      floodAlertActive=false;
+      lastDispatchedRisk=risk;
+      localStorage.removeItem('yala_maha_flood_alert');
+      render();
+      toast(`River risk dropped to ${risk.toLowerCase()}. Flood alert cleared.`);
+    }
+    hideOfficerBanner();
+  }
+}
+
+function dispatchSMSAlert(risk,peakLevel,exceedTime){
+  floodAlertActive=true;
+  floodPeakDisplay=`${peakLevel.toFixed(2)} m (${Math.round((peakLevel/RIVER_CONFIG.river.safeCapacityMeters)*100)}%)`;
+  floodTimeDisplay={
+    en:exceedTime,
+    si:exceedTime.includes('Thursday')?'බ්‍රහස්පතින්දා සවස':exceedTime,
+    ta:exceedTime.includes('Thursday')?'வியாழன் மாலை':exceedTime
+  };
+  localStorage.setItem('yala_maha_flood_alert',JSON.stringify({active:true,risk:risk,peak:floodPeakDisplay,time:exceedTime}));
+  const alertText=`Flood warning: Yan Oya River may overflow by ${exceedTime}. Move livestock…`;
+  hist.unshift(['Just now (River Auto)',RIVER_CONFIG.alerts.targetGroup||'Downstream',alertText,String(RIVER_CONFIG.alerts.affectedFarmerCount||412),'bd','Delivered']);
+  drawHist();
+  render();
+  toast(`Flood warning SMS broadcast dispatched to ${RIVER_CONFIG.alerts.affectedFarmerCount||412} farmers`);
+}
+
+function showOfficerBanner(risk,peakLevel,exceedTime){
+  const b=$('#rv-officer-banner');if(!b)return;
+  $('#rv-banner-title').textContent=`${risk} Alert Detected: Officer Authorization Required`;
+  $('#rv-banner-msg').textContent=`Yan Oya River forecast to reach ${peakLevel.toFixed(2)} m by ${exceedTime}. Ready to broadcast to 412 downstream farmers.`;
+  b.style.display='block';
+}
+
+function hideOfficerBanner(){
+  const b=$('#rv-officer-banner');if(b)b.style.display='none';
+  pendingOfficerAlert=null;
+}
+
+initRiverPage();
+</script>
+</body>
+</html>
