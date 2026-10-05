@@ -81,4 +81,4 @@ The Node.js server provides lightweight REST API endpoints:
 
 ## 🇱🇰 Trilingual Support
 
-puk sudud
+eng-sin-tam
