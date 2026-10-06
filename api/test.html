@@ -1,0 +1,26 @@
+<html>
+<body>
+  <p id="out">Loading...</p>
+
+<script>
+const URL = "https://raw.githubusercontent.com/nuuuwan/lk_irrigation/refs/heads/main/data/alert_data.last_28_days.json";
+
+fetch(URL)
+  .then(r => r.json())
+  .then(data => {
+    const days = data.event_data["Manampitiya"];
+    const lastDay = Object.keys(days).sort().pop();
+    const times = days[lastDay];
+    const lastTime = Object.keys(times).sort().pop();
+    const level = times[lastTime];
+    
+    let status = "Normal";
+         if (level >= 6) status = "Major flood";
+         else if (level >= 4.3) status = "Minor flood";
+         else if (level >= 3) status = "Alert";
+
+    document.getElementById("out").textContent = "Manampitiya: " + level + " m (" + status + ")";
+  });
+</script>
+</body>
+</html>

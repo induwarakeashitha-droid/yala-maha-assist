@@ -36,6 +36,18 @@ const RIVER_CONFIG = {
     refreshIntervalMinutes: 30,
   },
 
+  gauges: {
+    url: "https://raw.githubusercontent.com/nuuuwan/lk_irrigation/refs/heads/main/data/alert_data.last_28_days.json",
+    stations: {
+      "Horowpothana": { river: "Yan Oya",        alert: 6.0, minor: 7.5, major: 10.5 },
+      "Manampitiya":  { river: "Mahaweli Ganga", alert: 3.0, minor: 4.3, major: 6.0 },
+      "Weraganthota": { river: "Mahaweli Ganga", alert: 5.0, minor: 6.0, major: 8.0 },
+      "Peradeniya":   { river: "Mahaweli Ganga", alert: 5.0, minor: 7.0, major: 9.0 },
+      "Nawalapitiya": { river: "Mahaweli Ganga", alert: 3.5, minor: 5.0, major: 6.0 }
+    },
+    staleAfterHours: 24
+  },
+
   // ----------------------------------------------------------------
   // 2. RIVER BASIN & HYDROLOGICAL PARAMETERS
   // ----------------------------------------------------------------
@@ -278,7 +290,71 @@ const RIVER_CONFIG = {
   }
 };
 
+async function loadGauges() {
+  const g = RIVER_CONFIG.gauges;
+  const res = await fetch(g.url);
+  if (!res.ok) {
+    throw new Error(`Failed to fetch river gauges: HTTP ${res.status}`);
+  }
+  const data = await res.json();
+  if (!data || !data.event_data) {
+    throw new Error('Gauge data is missing event_data');
+  }
+
+  const list = [];
+  for (const name in g.stations) {
+    const days = data.event_data[name];
+    if (!days || typeof days !== 'object') continue;
+
+    const dayKeys = Object.keys(days).sort();
+    if (dayKeys.length === 0) continue;
+    const day = dayKeys[dayKeys.length - 1];
+
+    const times = days[day];
+    if (!times || typeof times !== 'object') continue;
+
+    const timeKeys = Object.keys(times).sort();
+    if (timeKeys.length === 0) continue;
+    const time = timeKeys[timeKeys.length - 1];
+
+    const level = Number(times[time]);
+
+    const paddedDay = String(day).padStart(8, '0');
+    const paddedTime = String(time).padStart(6, '0');
+    const when = new Date(
+      `${paddedDay.slice(0, 4)}-${paddedDay.slice(4, 6)}-${paddedDay.slice(6, 8)}T` +
+      `${paddedTime.slice(0, 2)}:${paddedTime.slice(2, 4)}:${paddedTime.slice(4, 6)}+05:30`
+    );
+
+    const t = g.stations[name];
+    let status = 'Normal';
+    if (level >= t.major) {
+      status = 'Major flood';
+    } else if (level >= t.minor) {
+      status = 'Minor flood';
+    } else if (level >= t.alert) {
+      status = 'Alert';
+    }
+
+    const stale = (Date.now() - when.getTime()) > (g.staleAfterHours * 3600 * 1000);
+
+    list.push({
+      name,
+      river: t.river,
+      level,
+      status,
+      when,
+      stale
+    });
+  }
+
+  return list;
+}
+
 // Export for Node/CommonJS environments if ever imported as module
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = RIVER_CONFIG;
+  module.exports.loadGauges = loadGauges;
 }
+
+
