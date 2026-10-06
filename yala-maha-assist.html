@@ -36,7 +36,7 @@
   <span class="chip amb">☀ MAHA KANNAYA 2026</span><span class="sp"></span>
   <button class="hb" id="qb">Quick Broadcast SMS</button><button class="hb o" id="so">Sign out</button>
  </div>
- <div class="nav" id="nav"><button data-p="dash" class="on">Dashboard</button><button data-p="river">River</button><button data-p="map">Coverage Map</button><button data-p="sms">SMS Gateway</button><button data-p="portal">Farmer Portal</button></div>
+ <div class="nav" id="nav"><button data-p="dash" class="on">Dashboard</button><button data-p="river">River</button><button data-p="map">Coverage Map</button><button data-p="sms">SMS Gateway</button><button data-p="portal">Farmer Portal</button><div class="nav-basin-wrap"><label for="basin-select" class="nav-basin-lbl"><svg class="i" viewBox="0 0 24 24"><path d="M12 21s7-6 7-11a7 7 0 0 0-14 0c0 5 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>Basin:</label><select id="basin-select" class="nav-basin-select" aria-label="Select River Basin"><optgroup label="Yan Oya River Basin"><option value="Horowpothana" selected>Yan Oya · Horowpothana</option></optgroup><optgroup label="Mahaweli Ganga Basin"><option value="Manampitiya">Mahaweli · Manampitiya</option><option value="Weraganthota">Mahaweli · Weraganthota</option><option value="Peradeniya">Mahaweli · Peradeniya</option><option value="Nawalapitiya">Mahaweli · Nawalapitiya</option></optgroup></select></div></div>
 
  <section class="page on" id="page-dash">
   <div class="pt">Tank Dashboard</div><div class="ps">Palugaswewa Tank, sample data · Updated 6:00 AM</div>
@@ -72,7 +72,7 @@
   <div class="row" style="align-items:flex-start;flex-wrap:wrap;margin-bottom:8px">
    <div>
     <div class="pt">River Monitoring &amp; Flood Warning</div>
-    <div class="ps" style="margin-bottom:4px">Yan Oya River Basin · Open-Meteo Flood API &amp; Catchment Hydrology · <span id="rv-updated">Updated just now</span></div>
+    <div class="ps" style="margin-bottom:4px"><span id="rv-basin-subtitle">Yan Oya River Basin</span> · Open-Meteo &amp; Irrigation Dept. Real-time API · <span id="rv-updated">Updated just now</span></div>
    </div>
    <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
     <span class="chip" id="rv-api-status"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#10B981;margin-right:4px"></span>Live API</span>
@@ -89,11 +89,11 @@
     <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
      <span class="small" style="font-weight:600">Simulate Scenario:</span>
      <div class="seg2" id="rv-scen-seg">
-      <button data-sc="live">Live API</button>
+      <button class="on" data-sc="live">Live API</button>
       <button data-sc="safe">Safe (48%)</button>
       <button data-sc="watch">Watch (70%)</button>
       <button data-sc="warning">Warning (95%)</button>
-      <button class="on" data-sc="flood">Flood (107%)</button>
+      <button data-sc="flood">Flood (107%)</button>
      </div>
     </div>
    </div>
@@ -144,11 +144,14 @@
    <div class="ct" style="margin:0">Measured River Gauges</div>
    <div class="cs" style="margin:0">Irrigation Department readings · <span id="rv-gauges-updated">Loading...</span></div>
   </div>
-  <span class="chip">Source: Irrigation Dept.</span>
+  <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+   <span class="chip" id="rv-gauges-api-mark"><span class="pulse-dot"></span>Live API Data</span>
+   <span class="chip">Source: Irrigation Dept.</span>
+  </div>
  </div>
  <div class="tw"><table>
-  <thead><tr><th>Station</th><th>River</th><th>Level</th><th>Status</th><th>Last reading</th></tr></thead>
-  <tbody id="rv-gauges-tbody"><tr><td colspan="5">Loading...</td></tr></tbody>
+  <thead><tr><th>Station</th><th>River</th><th>Level</th><th>Status</th><th>Trend</th><th>Last reading</th></tr></thead>
+  <tbody id="rv-gauges-tbody"><tr><td colspan="6">Loading...</td></tr></tbody>
  </table></div>
 </div>
 

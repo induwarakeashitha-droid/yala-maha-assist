@@ -11,10 +11,15 @@ function show(p) {
 
   const locEl = $('#loc');
   if (locEl) {
-    locEl.textContent = p === 'dash' ? 'Palugaswewa Tank'
-      : p === 'river' ? 'Yan Oya River Basin'
-      : p === 'map' ? 'Mahaweli B Zone'
-      : 'Palugaswewa Chain';
+    if (p === 'river' && typeof getSelectedBasinStation === 'function') {
+      const st = getSelectedBasinStation();
+      locEl.textContent = `${st.river} · ${st.name}`;
+    } else {
+      locEl.textContent = p === 'dash' ? 'Palugaswewa Tank'
+        : p === 'river' ? 'Yan Oya River Basin'
+        : p === 'map' ? 'Mahaweli B Zone'
+        : 'Palugaswewa Chain';
+    }
   }
 
   window.scrollTo(0, 0);

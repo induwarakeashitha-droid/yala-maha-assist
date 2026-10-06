@@ -33,7 +33,9 @@ function getRate(readings) {
 
 async function loadGauges() {
   const g = RIVER_CONFIG.gauges;
-  const data = await fetch(g.url).then(r => r.json());
+  const res = await fetch(g.url);
+  if (!res.ok) throw new Error("HTTP " + res.status);
+  const data = await res.json();
   const list = [];
 
   for (const name in g.stations) {
@@ -81,10 +83,14 @@ function trendCell(g) {
 async function showGauges() {
   const body = document.getElementById("rv-gauges-tbody");
   const note = document.getElementById("rv-gauges-updated");
+  const mark = document.getElementById("rv-gauges-api-mark");
   if (!body) return;
 
   try {
     const list = await loadGauges();
+    if (mark) {
+      mark.innerHTML = '<span class="pulse-dot"></span>Live API Data';
+    }
     body.innerHTML = list.map(g => {
       const when = g.when.toLocaleString("en-LK", {
         timeZone: "Asia/Colombo", day: "numeric", month: "short",
@@ -101,6 +107,9 @@ async function showGauges() {
     }).join("");
     note.textContent = "Checked " + new Date().toLocaleTimeString("en-LK", { timeZone: "Asia/Colombo" });
   } catch (e) {
+    if (mark) {
+      mark.innerHTML = '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#EF4444"></span>API Offline';
+    }
     body.innerHTML = '<tr><td colspan="6">Could not load gauge data. Will try again soon.</td></tr>';
     note.textContent = "Offline";
   }
