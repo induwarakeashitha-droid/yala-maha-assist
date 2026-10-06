@@ -11,6 +11,11 @@
 <script src="river-config.js"></script>
 <script src="farm-config.js"></script>
 <script src="js/river-gauges.js"></script>
+<script src="js/river-forecast.js"></script>
+<script src="js/river-risk.js"></script>
+<script src="js/river-page.js"></script>
+
+
 
 <!-- Modular Application Scripts -->
 <script src="js/icons.js"></script>
@@ -35,6 +40,17 @@
 
  <section class="page on" id="page-dash">
   <div class="pt">Tank Dashboard</div><div class="ps">Palugaswewa Tank, sample data · Updated 6:00 AM</div>
+  <div class="card" id="rv-risk-card" style="margin-bottom:14px">
+ <div class="row" style="flex-wrap:wrap;gap:10px">
+  <div>
+   <div class="k">Overall flood risk (measured gauges + forecast)</div>
+   <div style="font-size:26px;font-weight:800;margin-top:4px" id="rv-risk-level">Loading...</div>
+   <div class="cap" style="text-transform:none" id="rv-risk-msg"></div>
+  </div>
+  <span class="chip" id="rv-risk-updated"></span>
+ </div>
+ <ul id="rv-risk-reasons" style="margin:10px 0 0;padding-left:18px;font-size:12.5px;line-height:1.7"></ul>
+</div>
   <div class="g4">
    <div class="card"><div class="k">Water level</div><div class="v">38%<div class="bar"><i style="width:38%;background:#F59E0B"></i></div></div><div class="cap">1.03M of 2.70M m³</div></div>
    <div class="card"><div class="k">7-day rain forecast</div><div class="v">18.5 mm<span class="pill ok">Light mid-week</span></div><div class="cap"><i>Source: Open-Meteo</i></div></div>
@@ -206,6 +222,21 @@
     </div>
    </div>
   </div>
+
+
+  <div class="card" style="margin-bottom:14px">
+ <div class="row" style="margin-bottom:10px;flex-wrap:wrap">
+  <div>
+   <div class="ct" style="margin:0">7-Day Outlook</div>
+   <div class="cs" style="margin:0" id="rv-forecast-summary">Loading...</div>
+  </div>
+  <span class="chip">Source: Open-Meteo</span>
+ </div>
+ <div class="tw"><table>
+  <thead><tr><th>Day</th><th>Rain</th><th>River flow</th><th>Flow, high end</th><th>Outlook</th></tr></thead>
+  <tbody id="rv-forecast-tbody"><tr><td colspan="5">Loading...</td></tr></tbody>
+ </table></div>
+</div>
 
   <div class="card">
    <div class="row" style="margin-bottom:10px">
