@@ -1,0 +1,752 @@
+[
+  {
+    "no": 26,
+    "topic": "Irrigation System",
+    "tank_name": "Ridiyagama",
+    "gross_capacity": {
+      "mcm": 32.1,
+      "acft": 26024
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 20.06,
+    "storage": {
+      "mcm": 33.77,
+      "acft": 27381,
+      "percentage": 105
+    },
+    "covered_land": {
+      "hectares": 6705,
+      "acres": 16561
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": null,
+    "topic": "Irrigation System",
+    "tank_name": "Minipe LB Main Canal",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 7990,
+      "acres": 19735
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 27,
+    "topic": "Irrigation System",
+    "tank_name": "Mapakada",
+    "gross_capacity": {
+      "mcm": 9.51,
+      "acft": 7710
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 103.54,
+    "storage": {
+      "mcm": 5.52,
+      "acft": 4472,
+      "percentage": 58
+    },
+    "covered_land": {
+      "hectares": 610,
+      "acres": 1507
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 28,
+    "topic": "Irrigation System",
+    "tank_name": "Dambarawa",
+    "gross_capacity": {
+      "mcm": 15.94,
+      "acft": 12923
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 100.62,
+    "storage": {
+      "mcm": 11.4,
+      "acft": 9240,
+      "percentage": 71
+    },
+    "covered_land": {
+      "hectares": 610,
+      "acres": 1507
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 29,
+    "topic": "Irrigation System",
+    "tank_name": "Sorabora",
+    "gross_capacity": {
+      "mcm": 20.74,
+      "acft": 16814
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 93.92,
+    "storage": {
+      "mcm": 12.63,
+      "acft": 10237,
+      "percentage": 61
+    },
+    "covered_land": {
+      "hectares": 810,
+      "acres": 2001
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 30,
+    "topic": "Irrigation System",
+    "tank_name": "Vakaneri",
+    "gross_capacity": {
+      "mcm": 16.67,
+      "acft": 13515
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 15.79,
+    "storage": {
+      "mcm": 14.56,
+      "acft": 11806,
+      "percentage": 87
+    },
+    "covered_land": {
+      "hectares": 4000,
+      "acres": 9880
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 31,
+    "topic": "Irrigation System",
+    "tank_name": "Huruluwewa",
+    "gross_capacity": {
+      "mcm": 67.8,
+      "acft": 54966
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 127.55,
+    "storage": {
+      "mcm": 17.97,
+      "acft": 14569,
+      "percentage": 27
+    },
+    "covered_land": {
+      "hectares": 4300,
+      "acres": 10621
+    },
+    "rainfall_last_24h": 13.4,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": null,
+    "topic": "Irrigation System",
+    "tank_name": "Nachchaduwa F. Canal",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 360,
+      "acres": 889
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 32,
+    "topic": "Irrigation System",
+    "tank_name": "Thuruvila",
+    "gross_capacity": {
+      "mcm": 10.07,
+      "acft": 8164
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 102.43,
+    "storage": {
+      "mcm": 4.97,
+      "acft": 4027,
+      "percentage": 49
+    },
+    "covered_land": {
+      "hectares": 190,
+      "acres": 469
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 33,
+    "topic": "Irrigation System",
+    "tank_name": "Nachchaduwa",
+    "gross_capacity": {
+      "mcm": 55.7,
+      "acft": 45157
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 99.08,
+    "storage": {
+      "mcm": 21.69,
+      "acft": 17588,
+      "percentage": 39
+    },
+    "covered_land": {
+      "hectares": 2970,
+      "acres": 7336
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 34,
+    "topic": "Irrigation System",
+    "tank_name": "Nuwarawewa",
+    "gross_capacity": {
+      "mcm": 44.5,
+      "acft": 36077
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 85.46,
+    "storage": {
+      "mcm": 24.96,
+      "acft": 20239,
+      "percentage": 56
+    },
+    "covered_land": {
+      "hectares": 1050,
+      "acres": 2594
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 35,
+    "topic": "Irrigation System",
+    "tank_name": "Tissawewa",
+    "gross_capacity": {
+      "mcm": 4.3,
+      "acft": 3486
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 90.49,
+    "storage": {
+      "mcm": 2.92,
+      "acft": 2363,
+      "percentage": 68
+    },
+    "covered_land": {
+      "hectares": 365,
+      "acres": 902
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 36,
+    "topic": "Irrigation System",
+    "tank_name": "Basawakkulama",
+    "gross_capacity": {
+      "mcm": 2.04,
+      "acft": 1654
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 84.2,
+    "storage": {
+      "mcm": 1.05,
+      "acft": 849,
+      "percentage": 51
+    },
+    "covered_land": {
+      "hectares": 155,
+      "acres": 383
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 37,
+    "topic": "Irrigation System",
+    "tank_name": "Rajanganaya",
+    "gross_capacity": {
+      "mcm": 100.7,
+      "acft": 81639
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 67.95,
+    "storage": {
+      "mcm": 95.56,
+      "acft": 77474,
+      "percentage": 95
+    },
+    "covered_land": {
+      "hectares": 7214,
+      "acres": 17819
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 38,
+    "topic": "Irrigation System",
+    "tank_name": "Angamuwa",
+    "gross_capacity": {
+      "mcm": 15.91,
+      "acft": 12898
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 59.86,
+    "storage": {
+      "mcm": 2.16,
+      "acft": 1755,
+      "percentage": 14
+    },
+    "covered_land": {
+      "hectares": null,
+      "acres": null
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": null,
+    "topic": "Irrigation System",
+    "tank_name": "Neela Bemma Anicut",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 690,
+      "acres": 1704
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": null,
+    "topic": "Irrigation System",
+    "tank_name": "Hathtota Anicut",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 445,
+      "acres": 1099
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": null,
+    "topic": "Irrigation System",
+    "tank_name": "Elahara Anicut",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 7000,
+      "acres": 17290
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 39,
+    "topic": "Irrigation System",
+    "tank_name": "PSS",
+    "gross_capacity": {
+      "mcm": 144.3,
+      "acft": 116986
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 56.94,
+    "storage": {
+      "mcm": 84.74,
+      "acft": 68701,
+      "percentage": 59
+    },
+    "covered_land": {
+      "hectares": 10365,
+      "acres": 25602
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 40,
+    "topic": "Irrigation System",
+    "tank_name": "Giritale",
+    "gross_capacity": {
+      "mcm": 26.8,
+      "acft": 21727
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 86.97,
+    "storage": {
+      "mcm": 9.82,
+      "acft": 7960,
+      "percentage": 37
+    },
+    "covered_land": {
+      "hectares": 3500,
+      "acres": 8645
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 41,
+    "topic": "Irrigation System",
+    "tank_name": "Minneriya",
+    "gross_capacity": {
+      "mcm": 135.7,
+      "acft": 110014
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 90.49,
+    "storage": {
+      "mcm": 68.94,
+      "acft": 55894,
+      "percentage": 51
+    },
+    "covered_land": {
+      "hectares": 9825,
+      "acres": 24268
+    },
+    "rainfall_last_24h": 0.5,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 42,
+    "topic": "Irrigation System",
+    "tank_name": "Kaudulla",
+    "gross_capacity": {
+      "mcm": 128.3,
+      "acft": 104014
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 67.25,
+    "storage": {
+      "mcm": 27.28,
+      "acft": 22113,
+      "percentage": 21
+    },
+    "covered_land": {
+      "hectares": 10642,
+      "acres": 26286
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 43,
+    "topic": "Irrigation System",
+    "tank_name": "Kantale",
+    "gross_capacity": {
+      "mcm": 140.6,
+      "acft": 113986
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 53.74,
+    "storage": {
+      "mcm": 39.43,
+      "acft": 31964,
+      "percentage": 28
+    },
+    "covered_land": {
+      "hectares": 11896,
+      "acres": 29383
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 44,
+    "topic": "Irrigation System",
+    "tank_name": "Vendrason",
+    "gross_capacity": {
+      "mcm": 24.7,
+      "acft": 20025
+    },
+    "date": "2026-10-08",
+    "water_level_msl": 49.53,
+    "storage": {
+      "mcm": 5.65,
+      "acft": 4583,
+      "percentage": 23
+    },
+    "covered_land": {
+      "hectares": 708,
+      "acres": 1749
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 45,
+    "topic": "Irrigation System",
+    "tank_name": "Allai",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 10000,
+      "acres": 24700
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": null,
+    "topic": "Irrigation System",
+    "tank_name": "Hangiriella",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 24,
+      "acres": 59
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": null,
+    "topic": "Irrigation System",
+    "tank_name": "Bathmadilla Anicut",
+    "gross_capacity": {
+      "mcm": null,
+      "acft": null
+    },
+    "date": null,
+    "water_level_msl": null,
+    "storage": {
+      "mcm": null,
+      "acft": null,
+      "percentage": null
+    },
+    "covered_land": {
+      "hectares": 971,
+      "acres": 2398
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 46,
+    "topic": "Irrigation System",
+    "tank_name": "Alikotaara",
+    "gross_capacity": {
+      "mcm": 6.2,
+      "acft": 5026
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 210.89,
+    "storage": {
+      "mcm": 3.89,
+      "acft": 3157,
+      "percentage": 63
+    },
+    "covered_land": {
+      "hectares": 183,
+      "acres": 452
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 47,
+    "topic": "Irrigation System",
+    "tank_name": "Hadapanagala",
+    "gross_capacity": {
+      "mcm": 20.5,
+      "acft": 16621
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 21.88,
+    "storage": {
+      "mcm": 12.08,
+      "acft": 9795,
+      "percentage": 59
+    },
+    "covered_land": {
+      "hectares": 1173,
+      "acres": 2897
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  },
+  {
+    "no": 48,
+    "topic": "Irrigation System",
+    "tank_name": "Lunugamwehera",
+    "gross_capacity": {
+      "mcm": 226.9,
+      "acft": 183949
+    },
+    "date": "2026-10-07",
+    "water_level_msl": 55.05,
+    "storage": {
+      "mcm": 140.81,
+      "acft": 114156,
+      "percentage": 62
+    },
+    "covered_land": {
+      "hectares": 10728,
+      "acres": 26498
+    },
+    "rainfall_last_24h": null,
+    "spilling_downstream_discharge": {
+      "m3_s": null,
+      "ft3_s": null
+    }
+  }
+]
