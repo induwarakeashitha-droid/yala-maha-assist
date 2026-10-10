@@ -11,3 +11,4 @@ CREATE TABLE IF NOT EXISTS mahawelitanks(
 
 --This is just the schemas for all of API Related Databases !!!  -D3n3th
 --TODO   - ADD ANOTHER TABLE TO STORE RAIN_DATA
+--CREATE A DATABASES WITH : 

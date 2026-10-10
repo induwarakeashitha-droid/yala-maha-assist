@@ -7,7 +7,7 @@ def download_pdf(url, filename):
     try:
         print(f"Downloading {filename}...")
 
-        # Send GET request with a user agent to avoid potential blocking
+        # Send GET request with a user agent
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
         }
@@ -16,11 +16,11 @@ def download_pdf(url, filename):
         # Check if request was successful
         response.raise_for_status()
 
-        # Get the directory of this script
+        
         script_dir = Path(__file__).parent
         filepath = script_dir / filename
 
-        # Save the PDF file
+       
         with open(filepath, 'wb') as f:
             f.write(response.content)
 
@@ -38,7 +38,7 @@ def main():
     """Main function to download both PDF files"""
     print("Starting PDF downloads from Mahaweli Authority website...\n")
 
-    # Define the files to download
+    # files to download
     downloads = [
         {
             'url': 'https://mahaweli.gov.lk/WMS%20DATA/Menue-WMS%20-%20E.pdf',
@@ -50,7 +50,7 @@ def main():
         }
     ]
 
-    # Download each file
+    # Download files
     success_count = 0
     for item in downloads:
         if download_pdf(item['url'], item['filename']):

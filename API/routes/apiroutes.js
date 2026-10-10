@@ -1,5 +1,5 @@
 const express = require('express')
-const mahaweli = require('../models/mahaweliModel')
+const mahaweli = require('../models/mahaweliModel.js')
 
 
 apirouter = express.Router()
