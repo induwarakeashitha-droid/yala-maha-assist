@@ -37,11 +37,9 @@ yala-maha-assist/
 │   │   └── errorHandles.js    # Error handling middleware
 │   ├── models/                # Database models and schema
 │   │   ├── mahaweliModel.js   # Tank data model
-│   │   ├── createUsery.js     # Database initialization
 │   │   └── schema.sql         # Database schema definition 
 │   ├── routes/                # API route definitions
 │   │   └── apiroutes.js       # REST API endpoints for Tanks/Resoviours
-│   ├── API/                   # API module (duplicate structure)
 │   └── package.json           # API dependencies
 ├── Controllers/               # HTML page controllers
 │   └── controller.js          # Serves HTML pages for various sections
@@ -184,8 +182,6 @@ npm install
 cp .env.example .env
 # Edit .env with your database credentials and API keys
 
-# 4. Initialize the database
-node API/models/createUsery.js
 
 # 5. Start the application
 npm start               # Main server (http://localhost:3000)
